@@ -376,7 +376,8 @@ h2 {
   display: grid;
   gap: 8px;
   color: var(--color-text);
-  font-weight: 800;
+  font-family: var(--font-main);
+  font-weight: 600;
 }
 
 .booking-form input,
@@ -386,6 +387,7 @@ h2 {
   border: 1px solid var(--color-border);
   border-radius: 16px;
   padding: 14px 16px;
+  font-family: var(--font-main);
   color: var(--color-text);
   background: white;
   outline: none;
