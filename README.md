@@ -50,6 +50,7 @@ The website focuses on clean design, smooth navigation, and a booking-first expe
 
 ## Project Structure
 
+```bash
 src/
 ├── components/
 ├── sections/
@@ -58,6 +59,7 @@ src/
 ├── types/
 ├── assets/
 └── styles/
+```
 
 ## Getting Started
 
