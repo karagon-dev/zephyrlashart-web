@@ -1,13 +1,17 @@
-import Navbar from './components/layout/Navbar';
-import Hero from './sections/Hero/Hero';
-import Services from './sections/Services/Services';
-import Gallery from './sections/Gallery/Gallery';
-import Booking from './sections/Booking/Booking';
-import Testimonials from './sections/Testimonials/Testimonials';
-import Contact from './sections/Contact/Contact';
-import Footer from './sections/Footer/Footer';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
+import Navbar from "./components/layout/Navbar";
+import Hero from "./sections/Hero/Hero";
+import Services from "./sections/Services/Services";
+import Gallery from "./sections/Gallery/Gallery";
+import Booking from "./sections/Booking/Booking";
+import Testimonials from "./sections/Testimonials/Testimonials";
+import Contact from "./sections/Contact/Contact";
+import Footer from "./sections/Footer/Footer";
+import LoginPage from "./pages/LoginPage";
+import { AdminAppointmentsPage } from "./pages/AdminAppointmentsPage";
+
+function HomePage() {
   return (
     <>
       <Navbar />
@@ -23,6 +27,18 @@ function App() {
 
       <Footer />
     </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/admin/appointments" element={<AdminAppointmentsPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
