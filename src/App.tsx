@@ -10,6 +10,7 @@ import Contact from "./sections/Contact/Contact";
 import Footer from "./sections/Footer/Footer";
 import LoginPage from "./pages/LoginPage";
 import { AdminAppointmentsPage } from "./pages/AdminAppointmentsPage";
+import { AdminCalendarPage } from "./pages/AdminCalendarPage";
 
 function HomePage() {
   return (
@@ -36,6 +37,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/admin/calendar" element={<AdminCalendarPage />} />
         <Route path="/admin/appointments" element={<AdminAppointmentsPage />} />
       </Routes>
     </BrowserRouter>
