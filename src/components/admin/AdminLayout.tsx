@@ -1,20 +1,31 @@
 import type { ReactNode } from "react";
+import { AdminSidebar } from "./AdminSidebar";
 
 type AdminLayoutProps = {
+  title: string;
+  eyebrow?: string;
   children: ReactNode;
 };
 
-export function AdminLayout({ children }: AdminLayoutProps) {
+export function AdminLayout({
+  title,
+  eyebrow = "Admin Panel",
+  children,
+}: AdminLayoutProps) {
   return (
-    <main className="admin-page">
-      <header className="admin-header">
-        <div>
-          <p className="eyebrow">Admin Panel</p>
-          <h2>Appointments</h2>
-        </div>
-      </header>
+    <div className="admin-shell">
+      <AdminSidebar />
 
-      {children}
-    </main>
+      <main className="admin-page">
+        <header className="admin-header">
+          <div>
+            <p className="eyebrow">{eyebrow}</p>
+            <h2>{title}</h2>
+          </div>
+        </header>
+
+        {children}
+      </main>
+    </div>
   );
 }
