@@ -34,7 +34,7 @@ export function LoginPage() {
         navigate("/");
       }
     } catch {
-      setError("Invalid email or password.");
+      setError("Correo electrónico o contraseña inválidos.");
     } finally {
       setIsLoading(false);
     }
@@ -43,13 +43,13 @@ export function LoginPage() {
   return (
     <main className="login-page">
       <section className="login-card">
-        <h1>Welcome back</h1>
+        <h1>Bienvenido de nuevo</h1>
 
-        <p>Log in to manage your appointments.</p>
+        <p>Inicia sesión para administrar tus citas.</p>
 
         <form onSubmit={handleSubmit} className="login-form">
           <label>
-            Email
+            Correo electrónico
 
             <input
               type="email"
@@ -60,7 +60,7 @@ export function LoginPage() {
           </label>
 
           <label>
-            Password
+            Contraseña
 
             <input
               type="password"
@@ -73,7 +73,7 @@ export function LoginPage() {
           {error && <span className="login-error">{error}</span>}
 
           <button type="submit" disabled={isLoading}>
-            {isLoading ? "Logging in..." : "Log in"}
+            {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
           </button>
         </form>
       </section>

@@ -15,47 +15,47 @@ function BookingContactStep({ formData, onChange }: Props) {
     <div className="booking-step">
       <div className="booking-step__header">
         <div>
-          <h3>Your information</h3>
-          <p>We’ll use this to confirm your appointment request.</p>
+          <h3>Tu información</h3>
+          <p>Usaremos esto para confirmar tu solicitud de cita.</p>
         </div>
       </div>
 
       <div className="booking-contact-grid">
         <label>
-          Full name
+          Nombre completo
           <input
             type="text"
             value={formData.name}
-            placeholder="Your name"
+            placeholder="Tu nombre"
             onChange={(event) => onChange('name', event.target.value)}
           />
         </label>
 
         <label>
-          Email
+          Correo electrónico
           <input
             type="email"
             value={formData.email}
-            placeholder="Your email"
+            placeholder="Tu correo electrónico"
             onChange={(event) => onChange('email', event.target.value)}
           />
         </label>
 
         <label>
-          Phone Number
+          Número de teléfono
           <input
             type="tel"
             value={formData.phone}
-            placeholder="Your phone number"
+            placeholder="Tu número de teléfono"
             onChange={(event) => onChange('phone', event.target.value)}
           />
         </label>
 
         <label className="booking-contact-grid__full">
-          Notes
+          Notas
           <textarea
             value={formData.notes}
-            placeholder="Example: natural volume, cat eye, brow cleanup..."
+            placeholder="Ejemplo: volumen natural, ojo de gato, limpieza de cejas..."
             onChange={(event) => onChange('notes', event.target.value)}
           />
         </label>

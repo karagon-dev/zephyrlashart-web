@@ -8,7 +8,7 @@ type Props = {
 };
 
 function formatDate(date: string) {
-  if (!date) return 'Not selected';
+  if (!date) return 'No seleccionado';
 
   return new Date(`${date}T00:00:00`).toLocaleDateString('en-US', {
     weekday: 'long',
@@ -18,7 +18,7 @@ function formatDate(date: string) {
 }
 
 function formatTime(dateTime?: string) {
-  if (!dateTime) return 'Not selected';
+  if (!dateTime) return 'No seleccionado';
 
   return new Date(dateTime).toLocaleTimeString('en-US', {
     hour: 'numeric',
@@ -29,11 +29,11 @@ function formatTime(dateTime?: string) {
 function BookingSummary({ selectedService, selectedDate, selectedSlot }: Props) {
   return (
     <div className="booking-summary-card">
-      <span>Selected appointment</span>
+      <span>Cita seleccionada</span>
 
       <div>
-        <strong>{selectedService?.name ?? 'Choose a service'}</strong>
-        <p>{selectedService?.duration ?? 'Duration pending'}</p>
+        <strong>{selectedService?.name ?? 'Elige un servicio'}</strong>
+        <p>{selectedService?.duration ?? 'Duración pendiente'}</p>
       </div>
 
       <div>

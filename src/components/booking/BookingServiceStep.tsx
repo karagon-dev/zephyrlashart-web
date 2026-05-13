@@ -11,8 +11,8 @@ function BookingServiceStep({ services, selectedService, onSelectService }: Prop
     <div className="booking-step">
       <div className="booking-step__header">
         <div>
-          <h3>Select your service</h3>
-          <p>Start by choosing what you want to book.</p>
+          <h3>Selecciona tu servicio</h3>
+          <p>Comienza eligiendo lo que deseas reservar.</p>
         </div>
       </div>
 

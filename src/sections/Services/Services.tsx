@@ -1,21 +1,21 @@
 const services = [
   {
-    title: 'Lash Extensions',
+    title: 'Extensiones de pestañas',
     description:
-      'Classic, hybrid, and volume lash sets designed to enhance your natural beauty.',
-    price: 'From $45',
+      'Juegos de pestañas clásicas, híbridas y de volumen diseñados para mejorar tu belleza natural.',
+    price: 'Desde $45',
   },
   {
-    title: 'Brow Design',
+    title: 'Diseño de cejas',
     description:
-      'Brow mapping, shaping, cleanup, and styling for a clean and balanced look.',
-    price: 'From $25',
+      'Mapeo de cejas, dar forma, limpieza y estilismo para un look limpio y equilibrado.',
+    price: 'Desde $25',
   },
   {
-    title: 'Lash Lift & Tint',
+    title: 'Levantamiento y tinte de pestañas',
     description:
-      'A soft, low-maintenance option to lift and darken your natural lashes.',
-    price: 'From $35',
+      'Una opción suave y de bajo mantenimiento para levantar y oscurecer tus pestañas naturales.',
+    price: 'Desde $35',
   },
 ];
 
@@ -23,11 +23,11 @@ function Services() {
   return (
     <section className="section" id="services">
       <div className="section__header">
-        <p className="eyebrow">Our services</p>
-        <h2>Beauty services made simple.</h2>
+        <p className="eyebrow">Nuestros servicios</p>
+        <h2>Servicios de belleza hechos simple.</h2>
         <p>
-          Choose from personalized lash and brow services designed for everyday
-          confidence, soft glam, and clean beauty.
+          Elige entre servicios personalizados de pestañas y cejas diseñados
+          para confianza diaria, glamour suave y belleza limpia.
         </p>
       </div>
 

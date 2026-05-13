@@ -2,32 +2,33 @@ function Contact() {
   return (
     <section className="section contact-section" id="contact">
       <div className="contact-content">
-        <p className="eyebrow">Contact</p>
-        <h2>Ready for your next lash or brow appointment?</h2>
+        <p className="eyebrow">Contacto</p>
+        <h2>¿Listo para tu próxima cita de pestañas o cejas?</h2>
         <p>
-          Message the studio to confirm availability, ask questions, or request
-          a custom lash set based on your style.
+          Envía un mensaje al estudio para confirmar disponibilidad, hacer
+          preguntas o solicitar un juego de pestañas personalizado según tu
+          estilo.
         </p>
       </div>
 
       <div className="contact-grid">
         <a href="https://wa.me/50600000000" target="_blank" rel="noreferrer">
           <span>WhatsApp</span>
-          <strong>Book through chat</strong>
+          <strong>Reservar mediante chat</strong>
         </a>
 
         <a href="https://www.instagram.com/zephyrlashbrowart?igsh=amtpOG15amRqbWdo" target="_blank" rel="noreferrer">
           <span>Instagram</span>
-          <strong>View latest work</strong>
+          <strong>Ver trabajo más reciente</strong>
         </a>
 
         <a href="https://maps.google.com/" target="_blank" rel="noreferrer">
-          <span>Location</span>
-          <strong>Find the studio</strong>
+          <span>Ubicación</span>
+          <strong>Encontrar el estudio</strong>
         </a>
 
         <a href="mailto:hello@zephyrlashart.com">
-          <span>Email</span>
+          <span>Correo electrónico</span>
           <strong>hello@zephyrlashart.com</strong>
         </a>
       </div>

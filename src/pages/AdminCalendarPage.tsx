@@ -49,7 +49,7 @@ export function AdminCalendarPage() {
       setAppointments(appointmentsData);
       setAvailableSlots(availableSlotsData);
     } catch {
-      setErrorMessage("Could not load calendar data.");
+      setErrorMessage("No se pudieron cargar los datos del calendario.");
     } finally {
       setIsLoading(false);
     }
@@ -63,7 +63,7 @@ export function AdminCalendarPage() {
       const data = await getAppointmentByKey(appointmentKey);
       setSelectedAppointment(data);
     } catch {
-      setErrorMessage("Could not load appointment details.");
+      setErrorMessage("No se pudieron cargar los detalles de la cita.");
     } finally {
       setIsModalLoading(false);
     }
@@ -87,9 +87,9 @@ export function AdminCalendarPage() {
   }, []);
 
   return (
-    <AdminLayout title="Calendar" eyebrow="Schedule overview">
+    <AdminLayout title="Calendario" eyebrow="Descripción del cronograma">
       {errorMessage && <p className="admin-state">{errorMessage}</p>}
-      {isLoading && <p className="admin-state">Loading calendar...</p>}
+      {isLoading && <p className="admin-state">Cargando calendario...</p>}
 
       <AppointmentCalendar
         appointments={displayedAppointments}

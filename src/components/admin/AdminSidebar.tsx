@@ -1,16 +1,16 @@
 import { NavLink } from "react-router-dom";
 
 const NAV_ITEMS = [
-  { to: "/admin/calendar", label: "Calendar" },
-  { to: "/admin/appointments", label: "Appointment requests" },
-  { to: "/", label: "Back to Main Page" },
+  { to: "/admin/calendar", label: "Calendario" },
+  { to: "/admin/appointments", label: "Solicitudes de citas" },
+  { to: "/", label: "Volver a la página principal" },
 ];
 
 export function AdminSidebar() {
   return (
     <aside className="admin-sidebar">
       <div className="admin-sidebar-brand">
-        <p className="eyebrow">Admin Panel</p>
+        <p className="eyebrow">Panel de administración</p>
         <h1>Zephyr Lash Art</h1>
       </div>
 

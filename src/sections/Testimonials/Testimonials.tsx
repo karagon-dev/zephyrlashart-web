@@ -1,18 +1,18 @@
 const testimonials = [
   {
     name: 'Sofia M.',
-    service: 'Hybrid Lash Extensions',
-    text: 'The result looked super clean and natural. The whole appointment felt calm, detailed, and professional.',
+    service: 'Extensiones de pestañas híbridas',
+    text: 'El resultado se veía súper limpio y natural. Toda la cita se sintió tranquila, detallada y profesional.',
   },
   {
     name: 'Valeria R.',
-    service: 'Brow Lamination',
-    text: 'My brows finally look shaped without needing much makeup. Loved the mapping and the final finish.',
+    service: 'Laminación de cejas',
+    text: 'Mis cejas finalmente se ven con forma sin necesitar mucho maquillaje. Me encantó el mapeo y el acabado final.',
   },
   {
     name: 'Camila A.',
-    service: 'Lash Lift & Tint',
-    text: 'Perfect option for everyday lashes. It made my natural lashes look longer and darker.',
+    service: 'Levantamiento y tinte de pestañas',
+    text: 'Opción perfecta para pestañas diarias. Hizo que mis pestañas naturales se vieran más largas y oscuras.',
   },
 ];
 
@@ -20,11 +20,11 @@ function Testimonials() {
   return (
     <section className="section testimonials-section">
       <div className="section__header">
-        <p className="eyebrow">Client love</p>
-        <h2>Soft results, happy clients.</h2>
+        <p className="eyebrow">Amor de los clientes</p>
+        <h2>Resultados suaves, clientes felices.</h2>
         <p>
-          Realistic sample testimonials for the demo. Later, these can come from
-          an admin panel or database.
+          Testimonios de ejemplo realistas para la demostración. Posteriormente,
+          estos pueden provenir de un panel de administración o base de datos.
         </p>
       </div>
 

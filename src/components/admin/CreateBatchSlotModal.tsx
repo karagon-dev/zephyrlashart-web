@@ -81,12 +81,12 @@ export function CreateBatchSlotModal({
     // Collect all selected days from all months
     const allSelectedDaysEntries = Object.entries(selectedDays);
     if (allSelectedDaysEntries.length === 0 || allSelectedDaysEntries.every(([, days]) => days.length === 0)) {
-      alert("Please select at least one day");
+      alert("Por favor selecciona al menos un día");
       return;
     }
 
     if (timeRanges.some((r) => !r.startTime || !r.endTime)) {
-      alert("Please fill all time ranges");
+      alert("Por favor completa todos los rangos de tiempo");
       return;
     }
 
@@ -122,7 +122,7 @@ export function CreateBatchSlotModal({
       onClose();
     } catch (error) {
       console.error(error);
-      alert("Failed to create batch slots");
+      alert("Error al crear espacios por lotes");
     } finally {
       setIsSubmitting(false);
     }
@@ -143,13 +143,13 @@ export function CreateBatchSlotModal({
           ×
         </button>
 
-        <p className="eyebrow">Batch scheduling</p>
-        <h2>Create available slots</h2>
+        <p className="eyebrow">Programación por lotes</p>
+        <h2>Crear espacios disponibles</h2>
 
         <form className="login-form" onSubmit={handleSubmit}>
           <div style={{ marginBottom: "1.5rem" }}>
             <label style={{ display: "block", marginBottom: "0.75rem" }}>
-              <strong>Time Ranges</strong>
+              <strong>Rangos de tiempo</strong>
             </label>
             {timeRanges.map((range, index) => (
               <div
@@ -162,7 +162,7 @@ export function CreateBatchSlotModal({
                 }}
               >
                 <label style={{ flex: 1 }}>
-                  Start
+                  Inicio
                   <input
                     type="time"
                     value={range.startTime}
@@ -173,7 +173,7 @@ export function CreateBatchSlotModal({
                   />
                 </label>
                 <label style={{ flex: 1 }}>
-                  End
+                  Fin
                   <input
                     type="time"
                     value={range.endTime}
@@ -198,7 +198,7 @@ export function CreateBatchSlotModal({
                       fontSize: "0.85rem",
                     }}
                   >
-                    Remove
+                    Eliminar
                   </button>
                 )}
               </div>
@@ -218,13 +218,13 @@ export function CreateBatchSlotModal({
                 fontSize: "0.85rem",
               }}
             >
-              + Add slot
+              + Añadir espacio
             </button>
           </div>
 
           <div style={{ marginBottom: "1.5rem" }}>
             <label style={{ display: "block", marginBottom: "0.75rem" }}>
-              <strong>Select Days in {format(viewMonth, "MMMM yyyy", { locale: enUS })}</strong>
+              <strong>Seleccionar días en {format(viewMonth, "MMMM yyyy", { locale: enUS })}</strong>
             </label>
             <CalendarPicker
               month={viewMonth}
@@ -235,7 +235,7 @@ export function CreateBatchSlotModal({
           </div>
 
           <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Creating..." : "Create batch"}
+            {isSubmitting ? "Creando..." : "Crear lote"}
           </button>
         </form>
       </section>
@@ -258,7 +258,7 @@ function CalendarPicker({
   const monthEnd = endOfMonth(month);
   const days = eachDayOfInterval({ start: monthStart, end: monthEnd });
 
-  const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const weekDays = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
   const firstDayOfWeek = getDay(monthStart);
 
   // Create empty cells for days before the month starts
@@ -287,7 +287,7 @@ function CalendarPicker({
             color: "var(--color-primary)",
           }}
         >
-          ← Prev
+          ← Anterior
         </button>
         <span style={{ fontWeight: "600", color: "var(--color-primary)" }}>
           {format(month, "MMMM yyyy", { locale: enUS })}
@@ -305,7 +305,7 @@ function CalendarPicker({
             color: "var(--color-primary)",
           }}
         >
-          Next →
+          Siguiente →
         </button>
       </div>
 

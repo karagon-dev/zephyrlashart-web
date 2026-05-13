@@ -26,17 +26,17 @@ function BookingTimeStep({
     <div className="booking-step">
       <div className="booking-step__header">
         <div>
-          <h3>Choose a time</h3>
-          <p>Select one of the available appointment slots.</p>
+          <h3>Elige una hora</h3>
+          <p>Selecciona uno de los espacios de cita disponibles.</p>
         </div>
       </div>
 
-      {!selectedDate && <p className="booking-muted">Select a date first.</p>}
+      {!selectedDate && <p className="booking-muted">Selecciona una fecha primero.</p>}
 
-      {selectedDate && isLoading && <p className="booking-muted">Loading times...</p>}
+      {selectedDate && isLoading && <p className="booking-muted">Cargando horarios...</p>}
 
       {selectedDate && !isLoading && availableSlots.length === 0 && (
-        <p className="booking-muted">No available times for this date.</p>
+        <p className="booking-muted">No hay horarios disponibles para esta fecha.</p>
       )}
 
       <div className="time-pill-grid">
@@ -51,7 +51,7 @@ function BookingTimeStep({
               onClick={() => onSelectSlot(slot)}
             >
               <strong>{formatTime(slot.startDateTime)}</strong>
-              <span>Available</span>
+              <span>Disponible</span>
             </button>
           );
         })}

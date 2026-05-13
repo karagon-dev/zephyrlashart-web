@@ -1,19 +1,19 @@
 const galleryItems = [
   {
-    title: 'Volume Lash Extensions',
-    category: 'Lash Extensions',
+    title: 'Extensiones de pestañas de volumen',
+    category: 'Extensiones de pestañas',
     image:
       'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=900&q=80',
   },
   {
-    title: 'Brow Lamination',
-    category: 'Brows',
+    title: 'Laminación de cejas',
+    category: 'Cejas',
     image:
       'https://images.unsplash.com/photo-1589710751893-f9a6770ad71b?auto=format&fit=crop&w=900&q=80',
   },
   {
-    title: 'Lash Lift Results',
-    category: 'Lash Lift',
+    title: 'Resultados del levantamiento de pestañas',
+    category: 'Levantamiento de pestañas',
     image:
       'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=900&q=80',
   },
@@ -23,11 +23,12 @@ function Gallery() {
   return (
     <section className="section gallery-section" id="gallery">
       <div className="section__header">
-        <p className="eyebrow">Studio work</p>
-        <h2>Clean details. Soft glam. Real results.</h2>
+        <p className="eyebrow">Trabajo del estudio</p>
+        <h2>Detalles limpios. Glamour suave. Resultados reales.</h2>
         <p>
-          A preview of lash extension sets, brow lamination work, and lash lift
-          transformations created with detail, mapping, and care.
+          Una vista previa de juegos de extensiones de pestañas, trabajo de
+          laminación de cejas y transformaciones de levantamiento de pestañas
+          creadas con detalle, mapeo y cuidado.
         </p>
       </div>
 

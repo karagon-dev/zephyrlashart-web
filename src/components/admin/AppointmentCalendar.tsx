@@ -108,7 +108,7 @@ function CustomToolbar({
           color: "var(--color-primary)",
         }}
       >
-        Create batch
+        Crear lote
       </button>
     </div>
   );

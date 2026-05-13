@@ -44,11 +44,11 @@ function Navbar() {
       </a>
 
       <nav className="navbar__links">
-        <a href="#services">Services</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#booking">Booking</a>
-        <a href="#contact">Contact</a>
-        {isAdmin && <a href="/admin/calendar">Admin Panel</a>}
+        <a href="#services">Servicios</a>
+        <a href="#gallery">Galería</a>
+        <a href="#booking">Reservas</a>
+        <a href="#contact">Contacto</a>
+        {isAdmin && <a href="/admin/calendar">Panel de administración</a>}
 
         <div className="navbar__profile-menu" ref={menuRef}>
           <button
@@ -64,7 +64,7 @@ function Navbar() {
               <div className="navbar__dropdown-user">
                 <div className="navbar__dropdown-user-header">
                   <div>
-                    <p className="navbar__dropdown-greeting">Hi, {user.clientFirstName}!</p>
+                    <p className="navbar__dropdown-greeting">¡Hola, {user.clientFirstName}!</p>
                     <p className="navbar__dropdown-email">{user.clientEmail}</p>
                   </div>
                 </div>
@@ -74,21 +74,21 @@ function Navbar() {
                   className="navbar__dropdown-item"
                   onClick={handleAdminPanel}
                 >
-                  Admin Panel
+                  Panel de administración
                 </button>
               )}
               <button
                 className="navbar__dropdown-item"
                 onClick={handlePasswordReset}
               >
-                Reset Password
+                Restablecer contraseña
               </button>
               <button
                 className="navbar__dropdown-item navbar__dropdown-logout"
                 onClick={handleLogout}
               >
                 <LogOut size={16} strokeWidth={2} />
-                Logout
+                Cerrar sesión
               </button>
             </div>
           )}
@@ -96,7 +96,7 @@ function Navbar() {
           {isMenuOpen && !user && (
             <div className="navbar__dropdown">
               <a href="/login" className="navbar__dropdown-item">
-                Login
+                Iniciar sesión
               </a>
             </div>
           )}

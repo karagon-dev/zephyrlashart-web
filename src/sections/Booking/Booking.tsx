@@ -22,11 +22,11 @@ type ContactFormData = {
 };
 
 const services: BookingService[] = [
-  { key: 1, name: 'Classic Lash Extensions', duration: '2h', description: 'Natural and elegant lash enhancement.' },
-  { key: 2, name: 'Hybrid Lash Extensions', duration: '2h 30m', description: 'A soft mix of classic and volume lashes.' },
-  { key: 3, name: 'Volume Lash Extensions', duration: '3h', description: 'Fuller, more dramatic lash look.' },
-  { key: 4, name: 'Brow Lamination', duration: '1h', description: 'Defined, lifted, and polished brows.' },
-  { key: 5, name: 'Lash Lift & Tint', duration: '1h 30m', description: 'Lifted natural lashes with tint.' },
+  { key: 1, name: 'Extensiones de pestañas clásicas', duration: '2h', description: 'Mejora de pestañas natural y elegante.' },
+  { key: 2, name: 'Extensiones de pestañas híbridas', duration: '2h 30m', description: 'Una mezcla suave de pestañas clásicas y de volumen.' },
+  { key: 3, name: 'Extensiones de pestañas de volumen', duration: '3h', description: 'Mirada de pestañas más completa y dramática.' },
+  { key: 4, name: 'Laminación de cejas', duration: '1h', description: 'Cejas definidas, levantadas y pulidas.' },
+  { key: 5, name: 'Levantamiento y tinte de pestañas', duration: '1h 30m', description: 'Pestañas naturales levantadas con tinte.' },
 ];
 
 const totalSteps = 4;
@@ -58,7 +58,7 @@ function Booking() {
       const slots = await getAvailableSlots();
       setAvailableSlots(slots);
     } catch {
-      setErrorMessage('Could not load available slots.');
+      setErrorMessage('No se pudieron cargar los espacios disponibles.');
       setAvailableSlots([]);
     } finally {
       setIsLoading(false);
@@ -96,7 +96,7 @@ function Booking() {
 
   const handleNext = () => {
     if (!canGoNext) {
-      setErrorMessage('Please complete this step before continuing.');
+      setErrorMessage('Por favor completa este paso antes de continuar.');
       return;
     }
 
@@ -123,12 +123,12 @@ function Booking() {
 
   const handleSubmit = async () => {
     if (!selectedService || !selectedSlot) {
-      setErrorMessage('Please complete your booking details.');
+      setErrorMessage('Por favor completa los detalles de tu reserva.');
       return;
     }
 
     if (!formData.name || !formData.email || !formData.phone) {
-      setErrorMessage('Please complete your contact information.');
+      setErrorMessage('Por favor completa tu información de contacto.');
       return;
     }
 
@@ -177,15 +177,15 @@ function Booking() {
             <div className="booking-toast__icon">✓</div>
 
             <div>
-              <strong>Appointment request sent successfully</strong>
-              <p>We'll contact you shortly to confirm your booking.</p>
+              <strong>Solicitud de cita enviada exitosamente</strong>
+              <p>Te contactaremos pronto para confirmar tu reserva.</p>
             </div>
           </div>
         )}
         <div className="booking-header">
-          <p className="eyebrow">Booking</p>
-          <h2>Book your appointment</h2>
-          <p>Choose your service, date, and time. Then send your request.</p>
+          <p className="eyebrow">Reservas</p>
+          <h2>Reserva tu cita</h2>
+          <p>Elige tu servicio, fecha y hora. Luego envía tu solicitud.</p>
         </div>
 
         {errorMessage && <div className="form-message form-message--error">{errorMessage}</div>}
@@ -234,13 +234,13 @@ function Booking() {
           <div className="booking-actions">
             {currentStep > 1 && (
               <button type="button" className="button button--secondary" onClick={handleBack}>
-                Go back
+                Atrás
               </button>
             )}
 
             {currentStep < totalSteps && (
               <button type="button" className="button button--primary" onClick={handleNext}>
-                Next
+                Siguiente
               </button>
             )}
 
@@ -251,7 +251,7 @@ function Booking() {
                 onClick={handleSubmit}
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Sending request...' : 'Send booking request'}
+                {isSubmitting ? 'Enviando solicitud...' : 'Enviar solicitud de reserva'}
               </button>
             )}
           </div>

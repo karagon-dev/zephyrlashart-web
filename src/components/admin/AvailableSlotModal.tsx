@@ -57,7 +57,7 @@ export function AvailableSlotModal({
 
       // Validate times
       if (new Date(startDateTime) >= new Date(endDateTime)) {
-        setErrorMessage("End time must be after start time.");
+        setErrorMessage("La hora de finalización debe ser después de la hora de inicio.");
         return;
       }
 
@@ -71,7 +71,7 @@ export function AvailableSlotModal({
         )
       ) {
         setErrorMessage(
-          "This time slot overlaps with an existing slot. Please choose a different time."
+          "Este espacio de tiempo se superpone con un espacio existente. Por favor elige una hora diferente."
         );
         return;
       }
@@ -91,7 +91,7 @@ export function AvailableSlotModal({
     } catch (error) {
       console.error(error);
       setErrorMessage(
-        error instanceof Error ? error.message : "An error occurred."
+        error instanceof Error ? error.message : "Ocurrió un error."
       );
     } finally {
       setIsSubmitting(false);
@@ -116,7 +116,7 @@ export function AvailableSlotModal({
     } catch (error) {
       console.error(error);
       setErrorMessage(
-        error instanceof Error ? error.message : "Failed to mark slot as unavailable."
+        error instanceof Error ? error.message : "Error al marcar el espacio como no disponible."
       );
     } finally {
       setIsSubmitting(false);
@@ -130,9 +130,9 @@ export function AvailableSlotModal({
           ×
         </button>
 
-        <p className="eyebrow">Available slot</p>
+        <p className="eyebrow">Espacio disponible</p>
 
-        <h2>{isEditMode ? "Edit available slot" : "Create available slot"}</h2>
+        <h2>{isEditMode ? "Editar espacio disponible" : "Crear espacio disponible"}</h2>
 
         {errorMessage && (
           <p style={{ color: "var(--color-primary)", marginBottom: "1rem" }}>
@@ -142,7 +142,7 @@ export function AvailableSlotModal({
 
         <form className="login-form" onSubmit={handleSubmit}>
           <label>
-            Start
+            Inicio
             <input
               type="datetime-local"
               value={startDateTime}
@@ -152,7 +152,7 @@ export function AvailableSlotModal({
           </label>
 
           <label>
-            End
+            Fin
             <input
               type="datetime-local"
               value={endDateTime}
@@ -165,11 +165,11 @@ export function AvailableSlotModal({
             <button type="submit" disabled={isSubmitting} style={{ flex: 1 }}>
               {isSubmitting
                 ? isEditMode
-                  ? "Updating..."
-                  : "Creating..."
+                  ? "Actualizando..."
+                  : "Creando..."
                 : isEditMode
-                  ? "Update slot"
-                  : "Create slot"}
+                  ? "Actualizar espacio"
+                  : "Crear espacio"}
             </button>
 
             {isEditMode && (
@@ -183,7 +183,7 @@ export function AvailableSlotModal({
                   border: "1px solid rgba(160, 80, 80, 0.3)",
                 }}
               >
-                {isSubmitting ? "Deleting..." : "Delete"}
+                {isSubmitting ? "Eliminando..." : "Eliminar"}
               </button>
             )}
           </div>

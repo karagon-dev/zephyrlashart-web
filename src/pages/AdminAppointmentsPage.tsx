@@ -56,7 +56,7 @@ export function AdminAppointmentsPage() {
       const data = await getAppointments();
       setAppointments(data);
     } catch {
-      setErrorMessage("Could not load appointments.");
+      setErrorMessage("No se pudieron cargar las citas.");
     } finally {
       setIsLoading(false);
     }
@@ -75,7 +75,7 @@ export function AdminAppointmentsPage() {
 
       await loadAppointments();
     } catch {
-      setErrorMessage("Could not update appointment status.");
+      setErrorMessage("No se pudo actualizar el estado de la cita.");
     }
   }
 
@@ -87,7 +87,7 @@ export function AdminAppointmentsPage() {
       const data = await getAppointmentByKey(appointmentKey);
       setSelectedAppointment(data);
     } catch {
-      setErrorMessage("Could not load appointment details.");
+      setErrorMessage("No se pudieron cargar los detalles de la cita.");
     } finally {
       setIsModalLoading(false);
     }
@@ -108,7 +108,7 @@ export function AdminAppointmentsPage() {
   }, []);
 
   return (
-    <AdminLayout title="Appointment requests" eyebrow="Manage bookings">
+    <AdminLayout title="Solicitudes de citas" eyebrow="Administrar reservas">
       <section className="admin-toolbar">
         <div className="admin-filters">
           <button
@@ -116,7 +116,7 @@ export function AdminAppointmentsPage() {
             className={statusFilter === "all" ? "is-active" : ""}
             onClick={() => setStatusFilter("all")}
           >
-            All
+            Todos
           </button>
 
           <button
@@ -124,7 +124,7 @@ export function AdminAppointmentsPage() {
             className={statusFilter === "pending" ? "is-active" : ""}
             onClick={() => setStatusFilter("pending")}
           >
-            Pending
+            Pendiente
           </button>
 
           <button
@@ -132,7 +132,7 @@ export function AdminAppointmentsPage() {
             className={statusFilter === "confirmed" ? "is-active" : ""}
             onClick={() => setStatusFilter("confirmed")}
           >
-            Confirmed
+            Confirmado
           </button>
 
           <button
@@ -140,7 +140,7 @@ export function AdminAppointmentsPage() {
             className={statusFilter === "rejected" ? "is-active" : ""}
             onClick={() => setStatusFilter("rejected")}
           >
-            Rejected
+            Rechazado
           </button>
         </div>
       </section>
@@ -149,12 +149,12 @@ export function AdminAppointmentsPage() {
         <table className="admin-table">
           <thead>
             <tr>
-              <th>Client</th>
-              <th>Service</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th>Notes</th>
-              <th>Actions</th>
+              <th>Cliente</th>
+              <th>Servicio</th>
+              <th>Fecha</th>
+              <th>Estado</th>
+              <th>Notas</th>
+              <th>Acciones</th>
             </tr>
           </thead>
 
@@ -162,7 +162,7 @@ export function AdminAppointmentsPage() {
             {errorMessage && <div className="admin-error-message" style={{color: "red", padding: "10px"}}>{errorMessage}</div>} {isLoading && (
               <tr>
                 <td colSpan={6} className="admin-empty-row">
-                  Loading appointments...
+                  Cargando citas...
                 </td>
               </tr>
             )}
@@ -170,7 +170,7 @@ export function AdminAppointmentsPage() {
             {!isLoading && filteredAppointments.length === 0 && (
               <tr>
                 <td colSpan={6} className="admin-empty-row">
-                  No appointments found.
+                  No se encontraron citas.
                 </td>
               </tr>
             )}
@@ -219,7 +219,7 @@ export function AdminAppointmentsPage() {
                             )
                           }
                         >
-                          Confirm
+                          Confirmar
                         </button>
 
                         <button
@@ -232,7 +232,7 @@ export function AdminAppointmentsPage() {
                             )
                           }
                         >
-                          Reject
+                          Rechazar
                         </button>
                       </div>
                     </td>

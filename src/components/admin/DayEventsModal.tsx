@@ -56,7 +56,7 @@ export function DayEventsModal({
 
         <div className="day-events-modal-content">
           {events.length === 0 ? (
-            <p className="day-events-empty">No events scheduled for this day.</p>
+            <p className="day-events-empty">No hay eventos programados para este día.</p>
           ) : (
             <div className="day-events-list">
               {events.map((event) => (

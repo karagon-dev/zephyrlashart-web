@@ -53,15 +53,15 @@ function BookingDateStep({ availableDates, selectedDate, onSelectDate, isLoading
     <div className="booking-step">
       <div className="booking-step__header">
         <div>
-          <h3>Choose a date</h3>
-          <p>Available dates are highlighted.</p>
+          <h3>Elige una fecha</h3>
+          <p>Las fechas disponibles están resaltadas.</p>
         </div>
       </div>
 
-      {isLoading && <p className="booking-muted">Loading available dates...</p>}
+      {isLoading && <p className="booking-muted">Cargando fechas disponibles...</p>}
 
       {!isLoading && availableDates.length === 0 && (
-        <p className="booking-muted">No available dates found.</p>
+        <p className="booking-muted">No se encontraron fechas disponibles.</p>
       )}
 
       {!isLoading && availableDates.length > 0 && (
@@ -71,13 +71,13 @@ function BookingDateStep({ availableDates, selectedDate, onSelectDate, isLoading
           </div>
 
           <div className="booking-calendar__weekdays">
-            <span>Sun</span>
-            <span>Mon</span>
-            <span>Tue</span>
-            <span>Wed</span>
-            <span>Thu</span>
-            <span>Fri</span>
-            <span>Sat</span>
+            <span>Dom</span>
+            <span>Lun</span>
+            <span>Mar</span>
+            <span>Mié</span>
+            <span>Jue</span>
+            <span>Vie</span>
+            <span>Sáb</span>
           </div>
 
           <div className="booking-calendar__grid">
