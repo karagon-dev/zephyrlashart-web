@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 const NAV_ITEMS = [
   { to: "/admin/calendar", label: "Calendar" },
   { to: "/admin/appointments", label: "Appointment requests" },
+  { to: "/", label: "Back to Main Page" },
 ];
 
 export function AdminSidebar() {

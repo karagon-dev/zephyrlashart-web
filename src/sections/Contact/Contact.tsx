@@ -16,7 +16,7 @@ function Contact() {
           <strong>Book through chat</strong>
         </a>
 
-        <a href="https://instagram.com/" target="_blank" rel="noreferrer">
+        <a href="https://www.instagram.com/zephyrlashbrowart?igsh=amtpOG15amRqbWdo" target="_blank" rel="noreferrer">
           <span>Instagram</span>
           <strong>View latest work</strong>
         </a>

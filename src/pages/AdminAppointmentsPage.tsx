@@ -159,7 +159,7 @@ export function AdminAppointmentsPage() {
           </thead>
 
           <tbody>
-            {isLoading && (
+            {errorMessage && <div className="admin-error-message" style={{color: "red", padding: "10px"}}>{errorMessage}</div>} {isLoading && (
               <tr>
                 <td colSpan={6} className="admin-empty-row">
                   Loading appointments...

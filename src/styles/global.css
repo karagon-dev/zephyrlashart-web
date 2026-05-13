@@ -604,10 +604,100 @@ h2 {
   color: inherit;
 
   transition: opacity 0.2s ease;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 .navbar__profile-link:hover {
   opacity: 0.7;
+}
+
+.navbar__profile-menu {
+  position: relative;
+}
+
+.navbar__dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 12px;
+  min-width: 200px;
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px rgba(47, 37, 37, 0.15);
+  overflow: hidden;
+  z-index: 100;
+}
+
+.navbar__dropdown-user {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-primary-light);
+}
+
+.navbar__dropdown-user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.navbar__dropdown-greeting {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.navbar__dropdown-email {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.navbar__dropdown-logout-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+
+.navbar__dropdown-logout-btn:hover {
+  opacity: 0.7;
+}
+
+.navbar__dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  color: var(--color-text);
+  text-align: left;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+}
+
+.navbar__dropdown-item:hover {
+  background-color: var(--color-primary-light);
+}
+
+.navbar__dropdown-logout {
+  color: var(--color-primary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .login-page {

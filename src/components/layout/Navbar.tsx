@@ -1,6 +1,42 @@
-import { User } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { User, LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
+  const isAdmin = user?.roleName?.toLowerCase() === "admin";
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleLogout = () => {
+    logout();
+    setIsMenuOpen(false);
+    navigate("/");
+  };
+
+  const handleAdminPanel = () => {
+    setIsMenuOpen(false);
+    navigate("/admin/calendar");
+  };
+
+  const handlePasswordReset = () => {
+    setIsMenuOpen(false);
+    navigate("/password-reset");
+  };
+
   return (
     <header className="navbar">
       <a href="/" className="navbar__brand">
@@ -12,10 +48,59 @@ function Navbar() {
         <a href="#gallery">Gallery</a>
         <a href="#booking">Booking</a>
         <a href="#contact">Contact</a>
+        {isAdmin && <a href="/admin/calendar">Admin Panel</a>}
 
-        <a href="/login" className="navbar__profile-link">
-          <User size={18} strokeWidth={2} />
-        </a>
+        <div className="navbar__profile-menu" ref={menuRef}>
+          <button
+            className="navbar__profile-link"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="User menu"
+          >
+            <User size={18} strokeWidth={2} />
+          </button>
+
+          {isMenuOpen && user && (
+            <div className="navbar__dropdown">
+              <div className="navbar__dropdown-user">
+                <div className="navbar__dropdown-user-header">
+                  <div>
+                    <p className="navbar__dropdown-greeting">Hi, {user.clientFirstName}!</p>
+                    <p className="navbar__dropdown-email">{user.clientEmail}</p>
+                  </div>
+                </div>
+              </div>
+              {isAdmin && (
+                <button
+                  className="navbar__dropdown-item"
+                  onClick={handleAdminPanel}
+                >
+                  Admin Panel
+                </button>
+              )}
+              <button
+                className="navbar__dropdown-item"
+                onClick={handlePasswordReset}
+              >
+                Reset Password
+              </button>
+              <button
+                className="navbar__dropdown-item navbar__dropdown-logout"
+                onClick={handleLogout}
+              >
+                <LogOut size={16} strokeWidth={2} />
+                Logout
+              </button>
+            </div>
+          )}
+
+          {isMenuOpen && !user && (
+            <div className="navbar__dropdown">
+              <a href="/login" className="navbar__dropdown-item">
+                Login
+              </a>
+            </div>
+          )}
+        </div>
       </nav>
     </header>
   );

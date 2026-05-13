@@ -1,39 +1,82 @@
-function LoginPage() {
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
+export function LoginPage() {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (
+    event: React.SyntheticEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+
+    setError("");
+    setIsLoading(true);
+
+    try {
+      const loggedUser = await login({
+        email,
+        password,
+      });
+
+      const roleName = loggedUser.roleName?.toLowerCase();
+
+      if (roleName === "admin") {
+        navigate("/admin/calendar");
+      } else {
+        navigate("/");
+      }
+    } catch {
+      setError("Invalid email or password.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <main className="login-page">
       <section className="login-card">
-        <a href="/" className="login-brand">
-          Zephyr Lash Art Studio
-        </a>
+        <h1>Welcome back</h1>
 
-        <p className="eyebrow">Welcome back</p>
+        <p>Log in to manage your appointments.</p>
 
-        <h1>Sign in to your account.</h1>
-
-        <p className="login-subtitle">
-          Access your appointments, booking details, and admin tools.
-        </p>
-
-        <form className="login-form">
+        <form onSubmit={handleSubmit} className="login-form">
           <label>
             Email
-            <input type="email" placeholder="you@example.com" />
+
+            <input
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
           </label>
 
           <label>
             Password
-            <input type="password" placeholder="Your password" />
+
+            <input
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+            />
           </label>
 
-          <button type="submit">Sign in</button>
-        </form>
+          {error && <span className="login-error">{error}</span>}
 
-        <p className="login-footer-text">
-          New here? You can request an appointment from the booking section.
-        </p>
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Logging in..." : "Log in"}
+          </button>
+        </form>
       </section>
     </main>
   );
 }
-
-export default LoginPage;
