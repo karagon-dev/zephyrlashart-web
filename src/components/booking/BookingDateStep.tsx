@@ -1,3 +1,5 @@
+import { useState, useMemo } from 'react';
+
 type Props = {
   availableDates: string[];
   selectedDate: string;
@@ -16,14 +18,9 @@ function formatMonthTitle(date: Date) {
   });
 }
 
-function buildCalendarDays(availableDates: string[]) {
-  const fallbackDate = new Date();
-  const firstAvailableDate = availableDates[0]
-    ? new Date(`${availableDates[0]}T00:00:00`)
-    : fallbackDate;
-
-  const year = firstAvailableDate.getFullYear();
-  const month = firstAvailableDate.getMonth();
+function buildCalendarDays(viewYear: number, viewMonth: number) {
+  const year = viewYear;
+  const month = viewMonth;
 
   const firstDayOfMonth = new Date(year, month, 1);
   const lastDayOfMonth = new Date(year, month + 1, 0);
@@ -47,7 +44,43 @@ function buildCalendarDays(availableDates: string[]) {
 
 function BookingDateStep({ availableDates, selectedDate, onSelectDate, isLoading }: Props) {
   const availableDateSet = new Set(availableDates);
-  const { monthTitle, days } = buildCalendarDays(availableDates);
+  
+  // Calculate initial month from first available date
+  const getInitialMonth = () => {
+    if (availableDates.length === 0) {
+      const now = new Date();
+      return { year: now.getFullYear(), month: now.getMonth() };
+    }
+    const firstAvailableDate = new Date(`${availableDates[0]}T00:00:00`);
+    return { year: firstAvailableDate.getFullYear(), month: firstAvailableDate.getMonth() };
+  };
+
+  const initialMonth = getInitialMonth();
+  const [viewMonth, setViewMonth] = useState(initialMonth.month);
+  const [viewYear, setViewYear] = useState(initialMonth.year);
+
+  const handlePrevMonth = () => {
+    if (viewMonth === 0) {
+      setViewMonth(11);
+      setViewYear(viewYear - 1);
+    } else {
+      setViewMonth(viewMonth - 1);
+    }
+  };
+
+  const handleNextMonth = () => {
+    if (viewMonth === 11) {
+      setViewMonth(0);
+      setViewYear(viewYear + 1);
+    } else {
+      setViewMonth(viewMonth + 1);
+    }
+  };
+
+  const { monthTitle, days } = useMemo(
+    () => buildCalendarDays(viewYear, viewMonth),
+    [availableDates, viewYear, viewMonth]
+  );
 
   return (
     <div className="booking-step">
@@ -66,8 +99,26 @@ function BookingDateStep({ availableDates, selectedDate, onSelectDate, isLoading
 
       {!isLoading && availableDates.length > 0 && (
         <div className="booking-calendar">
-          <div className="booking-calendar__header">
-            <strong>{monthTitle}</strong>
+          <div className="booking-calendar__navigation">
+            <button 
+              className="booking-calendar__nav-btn booking-calendar__nav-btn--prev"
+              onClick={handlePrevMonth}
+              type="button"
+              aria-label="Mes anterior"
+            >
+              ‹
+            </button>
+            <div className="booking-calendar__header">
+              <strong>{monthTitle}</strong>
+            </div>
+            <button 
+              className="booking-calendar__nav-btn booking-calendar__nav-btn--next"
+              onClick={handleNextMonth}
+              type="button"
+              aria-label="Próximo mes"
+            >
+              ›
+            </button>
           </div>
 
           <div className="booking-calendar__weekdays">

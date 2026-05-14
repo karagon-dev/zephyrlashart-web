@@ -32,7 +32,7 @@ export function AdminCalendarPage() {
     useState<AvailableSlot | null>(null);
 
   const displayedAppointments = useMemo(
-    () => appointments.filter((appointment) => appointment.appointmentStatusKey !== 3),
+    () => appointments.filter((appointment) => appointment.appointmentStatusKey === 2),
     [appointments]
   );
 

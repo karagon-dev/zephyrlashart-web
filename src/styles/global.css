@@ -1029,8 +1029,9 @@ h2 {
   overflow-y: auto;
   padding: 2rem;
   border-radius: 2rem;
-  background: #faf8f7;
-  box-shadow: 0 2rem 5rem rgba(45, 32, 32, 0.25);
+  background: #f5f0f0;
+  border: 1px solid rgba(160, 120, 120, 0.15);
+  box-shadow: 0 2rem 5rem rgba(45, 32, 32, 0.35);
 }
 
 .modal-close-button {
@@ -1100,7 +1101,7 @@ h2 {
   justify-content: space-between;
   align-items: center;
   padding: 0 0 1.5rem 0;
-  border-bottom: 2px solid rgba(160, 120, 120, 0.15);
+  border-bottom: 1px solid rgba(160, 120, 120, 0.2);
   margin-bottom: 1.5rem;
 }
 
@@ -1108,7 +1109,7 @@ h2 {
   margin: 0;
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: #6b4f4e;
 }
 
 .day-events-modal-close {
@@ -1154,8 +1155,8 @@ h2 {
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: rgba(255, 250, 250, 0.8);
-  border: 1px solid rgba(160, 120, 120, 0.18);
+  background: rgba(247, 237, 237, 0.9);
+  border: 1px solid rgba(160, 120, 120, 0.2);
   border-radius: 0.75rem;
   padding: 1rem;
   text-align: left;
@@ -1166,8 +1167,8 @@ h2 {
 }
 
 .day-event-item:hover {
-  background: rgba(160, 120, 120, 0.05);
-  border-color: rgba(160, 120, 120, 0.3);
+  background: rgba(244, 227, 227, 0.95);
+  border-color: rgba(160, 120, 120, 0.35);
   transform: translateX(0.25rem);
 }
 
@@ -1444,6 +1445,54 @@ h2 {
   background: #8f6b6b;
   color: #fff;
   border-color: #8f6b6b;
+}
+
+.booking-calendar__navigation {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0 0.25rem;
+}
+
+.booking-calendar__header {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border-radius: 16px;
+  text-align: center;
+  background: #f7eded;
+  color: #5e4343;
+}
+
+.booking-calendar__nav-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ead2d2;
+  border-radius: 12px;
+  background: #faf7f7;
+  color: #8f6b6b;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.booking-calendar__nav-btn:hover {
+  background: #f4e3e3;
+  border-color: #b58d8d;
+  color: #5e4343;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(143, 107, 107, 0.12);
+}
+
+.booking-calendar__nav-btn:active {
+  transform: translateY(0);
 }
 
 .time-pill-grid {
