@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { User, LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import styles from "./Navbar.module.css";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -38,21 +39,21 @@ function Navbar() {
   };
 
   return (
-    <header className="navbar">
-      <a href="/" className="navbar__brand">
+    <header className={styles.navbar}>
+      <a href="/" className={styles.brand}>
         Zephyr Lash Art Studio
       </a>
 
-      <nav className="navbar__links">
+      <nav className={styles.links}>
         <a href="#services">Servicios</a>
         <a href="#gallery">Galería</a>
         <a href="#booking">Reservas</a>
         <a href="#contact">Contacto</a>
         {isAdmin && <a href="/admin/calendar">Panel de administración</a>}
 
-        <div className="navbar__profile-menu" ref={menuRef}>
+        <div className={styles.profileMenu} ref={menuRef}>
           <button
-            className="navbar__profile-link"
+            className={styles.profileLink}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="User menu"
           >
@@ -60,31 +61,31 @@ function Navbar() {
           </button>
 
           {isMenuOpen && user && (
-            <div className="navbar__dropdown">
-              <div className="navbar__dropdown-user">
-                <div className="navbar__dropdown-user-header">
+            <div className={styles.dropdown}>
+              <div className={styles.dropdownUser}>
+                <div className={styles.dropdownUserHeader}>
                   <div>
-                    <p className="navbar__dropdown-greeting">¡Hola, {user.clientFirstName}!</p>
-                    <p className="navbar__dropdown-email">{user.clientEmail}</p>
+                    <p className={styles.dropdownGreeting}>¡Hola, {user.clientFirstName}!</p>
+                    <p className={styles.dropdownEmail}>{user.clientEmail}</p>
                   </div>
                 </div>
               </div>
               {isAdmin && (
                 <button
-                  className="navbar__dropdown-item"
+                  className={styles.dropdownItem}
                   onClick={handleAdminPanel}
                 >
                   Panel de administración
                 </button>
               )}
               <button
-                className="navbar__dropdown-item"
+                className={styles.dropdownItem}
                 onClick={handlePasswordReset}
               >
                 Restablecer contraseña
               </button>
               <button
-                className="navbar__dropdown-item navbar__dropdown-logout"
+                className={`${styles.dropdownItem} ${styles.dropdownLogout}`}
                 onClick={handleLogout}
               >
                 <LogOut size={16} strokeWidth={2} />
@@ -94,8 +95,8 @@ function Navbar() {
           )}
 
           {isMenuOpen && !user && (
-            <div className="navbar__dropdown">
-              <a href="/login" className="navbar__dropdown-item">
+            <div className={styles.dropdown}>
+              <a href="/login" className={styles.dropdownItem}>
                 Iniciar sesión
               </a>
             </div>

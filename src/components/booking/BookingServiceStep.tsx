@@ -1,4 +1,5 @@
 import type { BookingService } from '../../sections/Booking/Booking';
+import styles from './BookingServiceStep.module.css';
 
 type Props = {
   services: BookingService[];
@@ -8,15 +9,15 @@ type Props = {
 
 function BookingServiceStep({ services, selectedService, onSelectService }: Props) {
   return (
-    <div className="booking-step">
-      <div className="booking-step__header">
+    <div className={styles.step}>
+      <div className={styles.header}>
         <div>
           <h3>Selecciona tu servicio</h3>
           <p>Comienza eligiendo lo que deseas reservar.</p>
         </div>
       </div>
 
-      <div className="service-card-grid">
+      <div className={styles.grid}>
         {services.map((service) => {
           const isSelected = selectedService?.key === service.key;
 
@@ -24,7 +25,7 @@ function BookingServiceStep({ services, selectedService, onSelectService }: Prop
             <button
               type="button"
               key={service.key}
-              className={`service-card ${isSelected ? 'service-card--selected' : ''}`}
+              className={`${styles.card} ${isSelected ? styles.cardSelected : ''}`}
               onClick={() => onSelectService(service)}
             >
               <strong>{service.name}</strong>

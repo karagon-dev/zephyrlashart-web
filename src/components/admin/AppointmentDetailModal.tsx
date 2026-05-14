@@ -1,4 +1,5 @@
 import type { AppointmentDetail } from "../../types/appointment";
+import styles from "./Modals.module.css";
 
 type AppointmentDetailModalProps = {
   appointment: AppointmentDetail | null;
@@ -16,9 +17,9 @@ export function AppointmentDetailModal({
   }
 
   return (
-    <div className="modal-backdrop">
-      <section className="appointment-modal">
-        <button type="button" className="modal-close-button" onClick={onClose}>
+    <div className={styles.backdrop}>
+      <section className={styles.modal}>
+        <button type="button" className={styles.closeButton} onClick={onClose}>
           ×
         </button>
 
@@ -30,7 +31,7 @@ export function AppointmentDetailModal({
 
             <h2>{appointment.clientName}</h2>
 
-            <div className="appointment-modal-grid">
+            <div className={styles.grid}>
               <div>
                 <span>Servicio</span>
                 <strong>{appointment.serviceName}</strong>
@@ -76,7 +77,7 @@ export function AppointmentDetailModal({
               </div>
             </div>
 
-            <div className="appointment-modal-notes">
+            <div className={styles.notes}>
               <span>Notas</span>
               <p>{appointment.notes ?? "No se proporcionaron notas."}</p>
             </div>

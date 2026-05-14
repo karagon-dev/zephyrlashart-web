@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import styles from "./AuthPages.module.css";
 
 export function LoginPage() {
   const navigate = useNavigate();
@@ -41,13 +42,13 @@ export function LoginPage() {
   };
 
   return (
-    <main className="login-page">
-      <section className="login-card">
+    <main className={styles.page}>
+      <section className={styles.card}>
         <h1>Bienvenido de nuevo</h1>
 
-        <p>Inicia sesión para administrar tus citas.</p>
+        <p className={styles.subtitle}>Inicia sesión para administrar tus citas.</p>
 
-        <form onSubmit={handleSubmit} className="login-form">
+        <form onSubmit={handleSubmit} className={styles.form}>
           <label>
             Correo electrónico
 
@@ -70,24 +71,15 @@ export function LoginPage() {
             />
           </label>
 
-          {error && <span className="login-error">{error}</span>}
+          {error && <span className={styles.error}>{error}</span>}
 
           <button type="submit" disabled={isLoading}>
             {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
           </button>
 
-          <p style={{ textAlign: "center", marginTop: "1.5rem", fontSize: "0.9rem" }}>
+          <p className={styles.footerText}>
             ¿No tienes una cuenta?{" "}
-            <Link
-              to="/register"
-              style={{
-                color: "var(--color-primary)",
-                fontWeight: "600",
-                textDecoration: "none",
-                borderBottom: "2px solid var(--color-primary)",
-                paddingBottom: "2px",
-              }}
-            >
+            <Link to="/register" className={styles.footerLink}>
               Crear cuenta
             </Link>
           </p>

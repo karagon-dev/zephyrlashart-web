@@ -1,4 +1,5 @@
 import type { AvailableSlot } from '../../types/availableSlot';
+import styles from './BookingTimeStep.module.css';
 
 type Props = {
   selectedDate: string;
@@ -23,23 +24,23 @@ function BookingTimeStep({
   isLoading,
 }: Props) {
   return (
-    <div className="booking-step">
-      <div className="booking-step__header">
+    <div className={styles.step}>
+      <div className={styles.header}>
         <div>
           <h3>Elige una hora</h3>
           <p>Selecciona uno de los espacios de cita disponibles.</p>
         </div>
       </div>
 
-      {!selectedDate && <p className="booking-muted">Selecciona una fecha primero.</p>}
+      {!selectedDate && <p className={styles.muted}>Selecciona una fecha primero.</p>}
 
-      {selectedDate && isLoading && <p className="booking-muted">Cargando horarios...</p>}
+      {selectedDate && isLoading && <p className={styles.muted}>Cargando horarios...</p>}
 
       {selectedDate && !isLoading && availableSlots.length === 0 && (
-        <p className="booking-muted">No hay horarios disponibles para esta fecha.</p>
+        <p className={styles.muted}>No hay horarios disponibles para esta fecha.</p>
       )}
 
-      <div className="time-pill-grid">
+      <div className={styles.grid}>
         {availableSlots.map((slot) => {
           const isSelected = selectedSlot?.availableSlotKey === slot.availableSlotKey;
 
@@ -47,7 +48,7 @@ function BookingTimeStep({
             <button
               type="button"
               key={slot.availableSlotKey}
-              className={`time-pill ${isSelected ? 'time-pill--selected' : ''}`}
+              className={`${styles.pill} ${isSelected ? styles.pillSelected : ''}`}
               onClick={() => onSelectSlot(slot)}
             >
               <strong>{formatTime(slot.startDateTime)}</strong>

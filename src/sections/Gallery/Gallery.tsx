@@ -19,9 +19,11 @@ const galleryItems = [
   },
 ];
 
+import styles from './Gallery.module.css';
+
 function Gallery() {
   return (
-    <section className="section gallery-section" id="gallery">
+    <section className={`section ${styles.section}`} id="gallery">
       <div className="section__header">
         <p className="eyebrow">Trabajo del estudio</p>
         <h2>Detalles limpios. Glamour suave. Resultados reales.</h2>
@@ -32,12 +34,12 @@ function Gallery() {
         </p>
       </div>
 
-      <div className="gallery-grid">
+      <div className={styles.grid}>
         {galleryItems.map((item) => (
-          <article className="gallery-card" key={item.title}>
+          <article className={styles.card} key={item.title}>
             <img src={item.image} alt={item.title} />
 
-            <div className="gallery-card__content">
+            <div className={styles.cardContent}>
               <span>{item.category}</span>
               <h3>{item.title}</h3>
             </div>

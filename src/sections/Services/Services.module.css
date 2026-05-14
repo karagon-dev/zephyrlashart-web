@@ -1,0 +1,25 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.card h3 {
+  margin: 0 0 14px;
+  font-size: 1.35rem;
+}
+
+.card p {
+  margin-bottom: 28px;
+}
+
+.card strong {
+  color: var(--color-primary);
+  font-size: 1.05rem;
+}
+
+@media (max-width: 880px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

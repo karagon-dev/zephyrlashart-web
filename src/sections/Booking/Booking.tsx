@@ -7,6 +7,7 @@ import { createAppointment } from '../../services/appointmentApi';
 import { getAvailableSlots } from '../../services/availableSlotApi';
 import { useAuth } from '../../context/AuthContext';
 import type { AvailableSlot } from '../../types/availableSlot';
+import styles from './Booking.module.css';
 
 export type BookingService = {
   key: number;
@@ -184,11 +185,11 @@ function Booking() {
   };
 
   return (
-    <section className="section booking-section" id="booking">
-      <div className="container booking-container">
+    <section className={`section ${styles.section}`} id="booking">
+      <div className={styles.container}>
         {showSuccessToast && (
-          <div className="booking-toast booking-toast--success">
-            <div className="booking-toast__icon">✓</div>
+          <div className={`${styles.toast} ${styles.toastSuccess}`}>
+            <div className={styles.toastIcon}>✓</div>
 
             <div>
               <strong>Solicitud de cita enviada exitosamente</strong>
@@ -196,23 +197,23 @@ function Booking() {
             </div>
           </div>
         )}
-        <div className="booking-header">
+        <div className={styles.header}>
           <p className="eyebrow">Reservas</p>
           <h2>Reserva tu cita</h2>
           <p>Elige tu servicio, fecha y hora. Luego envía tu solicitud.</p>
         </div>
 
-        {errorMessage && <div className="form-message form-message--error">{errorMessage}</div>}
+        {errorMessage && <div className={`${styles.formMessage} ${styles.formMessageError}`}>{errorMessage}</div>}
 
-        <div className="booking-wizard">
-          <div className="booking-progress">
+        <div className={styles.wizard}>
+          <div className={styles.progress}>
             <span>Step {currentStep} of {totalSteps}</span>
-            <div className="booking-progress__bar">
+            <div className={styles.progressBar}>
               <div style={{ width: `${(currentStep / totalSteps) * 100}%` }} />
             </div>
           </div>
 
-          <div className="booking-wizard__content">
+          <div className={styles.wizardContent}>
             {currentStep === 1 && (
               <BookingServiceStep
                 services={services}
@@ -245,7 +246,7 @@ function Booking() {
             )}
           </div>
 
-          <div className="booking-actions">
+          <div className={styles.actions}>
             {currentStep > 1 && (
               <button type="button" className="button button--secondary" onClick={handleBack}>
                 Atrás

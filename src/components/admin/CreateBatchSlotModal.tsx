@@ -9,6 +9,8 @@ import {
 import { enUS } from "date-fns/locale";
 import { createBatchAvailableSlots } from "../../services/availableSlotApi";
 import type { CreateBatchAvailableSlotsRequest } from "../../services/availableSlotApi";
+import modalStyles from "./Modals.module.css";
+import authStyles from "../../pages/AuthPages.module.css";
 
 export type CreateBatchSlotRange = {
   startTime: string;
@@ -133,11 +135,11 @@ export function CreateBatchSlotModal({
   }
 
   return (
-    <div className="modal-backdrop">
-      <section className="appointment-modal">
+    <div className={modalStyles.backdrop}>
+      <section className={modalStyles.modal}>
         <button
           type="button"
-          className="modal-close-button"
+          className={modalStyles.closeButton}
           onClick={onClose}
         >
           ×
@@ -146,7 +148,7 @@ export function CreateBatchSlotModal({
         <p className="eyebrow">Programación por lotes</p>
         <h2>Crear espacios disponibles</h2>
 
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className={authStyles.form} onSubmit={handleSubmit}>
           <div style={{ marginBottom: "1.5rem" }}>
             <label style={{ display: "block", marginBottom: "0.75rem" }}>
               <strong>Rangos de tiempo</strong>

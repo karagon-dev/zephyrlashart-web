@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import styles from './BookingDateStep.module.css';
 
 type Props = {
   availableDates: string[];
@@ -83,36 +84,36 @@ function BookingDateStep({ availableDates, selectedDate, onSelectDate, isLoading
   );
 
   return (
-    <div className="booking-step">
-      <div className="booking-step__header">
+    <div className={styles.step}>
+      <div className={styles.header}>
         <div>
           <h3>Elige una fecha</h3>
           <p>Las fechas disponibles están resaltadas.</p>
         </div>
       </div>
 
-      {isLoading && <p className="booking-muted">Cargando fechas disponibles...</p>}
+      {isLoading && <p className={styles.muted}>Cargando fechas disponibles...</p>}
 
       {!isLoading && availableDates.length === 0 && (
-        <p className="booking-muted">No se encontraron fechas disponibles.</p>
+        <p className={styles.muted}>No se encontraron fechas disponibles.</p>
       )}
 
       {!isLoading && availableDates.length > 0 && (
-        <div className="booking-calendar">
-          <div className="booking-calendar__navigation">
+        <div className={styles.calendar}>
+          <div className={styles.navigation}>
             <button 
-              className="booking-calendar__nav-btn booking-calendar__nav-btn--prev"
+              className={styles.navBtn}
               onClick={handlePrevMonth}
               type="button"
               aria-label="Mes anterior"
             >
               ‹
             </button>
-            <div className="booking-calendar__header">
+            <div className={styles.calendarHeader}>
               <strong>{monthTitle}</strong>
             </div>
             <button 
-              className="booking-calendar__nav-btn booking-calendar__nav-btn--next"
+              className={styles.navBtn}
               onClick={handleNextMonth}
               type="button"
               aria-label="Próximo mes"
@@ -121,7 +122,7 @@ function BookingDateStep({ availableDates, selectedDate, onSelectDate, isLoading
             </button>
           </div>
 
-          <div className="booking-calendar__weekdays">
+          <div className={styles.weekdays}>
             <span>Dom</span>
             <span>Lun</span>
             <span>Mar</span>
@@ -131,10 +132,10 @@ function BookingDateStep({ availableDates, selectedDate, onSelectDate, isLoading
             <span>Sáb</span>
           </div>
 
-          <div className="booking-calendar__grid">
+          <div className={styles.grid}>
             {days.map((date, index) => {
               if (!date) {
-                return <div key={`empty-${index}`} className="booking-calendar__empty" />;
+                return <div key={`empty-${index}`} className={styles.empty} />;
               }
 
               const dateKey = getDateKey(date);
@@ -147,9 +148,9 @@ function BookingDateStep({ availableDates, selectedDate, onSelectDate, isLoading
                   type="button"
                   disabled={!isAvailable}
                   className={[
-                    'booking-calendar__day',
-                    isAvailable ? 'booking-calendar__day--available' : '',
-                    isSelected ? 'booking-calendar__day--selected' : '',
+                    styles.day,
+                    isAvailable ? styles.dayAvailable : '',
+                    isSelected ? styles.daySelected : '',
                   ].join(' ')}
                   onClick={() => onSelectDate(dateKey)}
                 >

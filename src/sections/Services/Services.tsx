@@ -19,6 +19,8 @@ const services = [
   },
 ];
 
+import styles from './Services.module.css';
+
 function Services() {
   return (
     <section className="section" id="services">
@@ -31,9 +33,9 @@ function Services() {
         </p>
       </div>
 
-      <div className="services-grid">
+      <div className={styles.grid}>
         {services.map((service) => (
-          <article className="service-card" key={service.title}>
+          <article className={styles.card} key={service.title}>
             <h3>{service.title}</h3>
             <p>{service.description}</p>
             <strong>{service.price}</strong>

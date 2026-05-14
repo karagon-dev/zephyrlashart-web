@@ -10,6 +10,7 @@ import type {
   AppointmentDetail,
   AppointmentListItem,
 } from "../types/appointment";
+import styles from "./AdminPages.module.css";
 
 const STATUS = {
   pending: 1,
@@ -109,11 +110,11 @@ export function AdminAppointmentsPage() {
 
   return (
     <AdminLayout title="Solicitudes de citas" eyebrow="Administrar reservas">
-      <section className="admin-toolbar">
-        <div className="admin-filters">
+      <section className={styles.toolbar}>
+        <div className={styles.filters}>
           <button
             type="button"
-            className={statusFilter === "all" ? "is-active" : ""}
+            className={statusFilter === "all" ? styles.active : ""}
             onClick={() => setStatusFilter("all")}
           >
             Todos
@@ -121,7 +122,7 @@ export function AdminAppointmentsPage() {
 
           <button
             type="button"
-            className={statusFilter === "pending" ? "is-active" : ""}
+            className={statusFilter === "pending" ? styles.active : ""}
             onClick={() => setStatusFilter("pending")}
           >
             Pendiente
@@ -129,7 +130,7 @@ export function AdminAppointmentsPage() {
 
           <button
             type="button"
-            className={statusFilter === "confirmed" ? "is-active" : ""}
+            className={statusFilter === "confirmed" ? styles.active : ""}
             onClick={() => setStatusFilter("confirmed")}
           >
             Confirmado
@@ -137,7 +138,7 @@ export function AdminAppointmentsPage() {
 
           <button
             type="button"
-            className={statusFilter === "rejected" ? "is-active" : ""}
+            className={statusFilter === "rejected" ? styles.active : ""}
             onClick={() => setStatusFilter("rejected")}
           >
             Rechazado
@@ -145,8 +146,8 @@ export function AdminAppointmentsPage() {
         </div>
       </section>
 
-      <section className="admin-card">
-        <table className="admin-table">
+      <section className={styles.card}>
+        <table className={styles.table}>
           <thead>
             <tr>
               <th>Cliente</th>
@@ -159,9 +160,9 @@ export function AdminAppointmentsPage() {
           </thead>
 
           <tbody>
-            {errorMessage && <div className="admin-error-message" style={{color: "red", padding: "10px"}}>{errorMessage}</div>} {isLoading && (
+            {errorMessage && <div style={{color: "red", padding: "10px"}}>{errorMessage}</div>} {isLoading && (
               <tr>
-                <td colSpan={6} className="admin-empty-row">
+                <td colSpan={6} className={styles.emptyRow}>
                   Cargando citas...
                 </td>
               </tr>
@@ -169,7 +170,7 @@ export function AdminAppointmentsPage() {
 
             {!isLoading && filteredAppointments.length === 0 && (
               <tr>
-                <td colSpan={6} className="admin-empty-row">
+                <td colSpan={6} className={styles.emptyRow}>
                   No se encontraron citas.
                 </td>
               </tr>
@@ -180,7 +181,6 @@ export function AdminAppointmentsPage() {
                 return (
                   <tr
                     key={appointment.appointmentKey}
-                    className="admin-table-row"
                     onClick={() =>
                       handleSelectAppointment(appointment.appointmentKey)
                     }
@@ -197,7 +197,11 @@ export function AdminAppointmentsPage() {
 
                     <td>
                       <span
-                        className={`status-badge ${appointment.appointmentStatusName.toLowerCase()}`}
+                        className={`${styles.statusBadge} ${
+                          styles[
+                            `statusBadge${appointment.appointmentStatusName.charAt(0).toUpperCase()}${appointment.appointmentStatusName.slice(1).toLowerCase()}`
+                          ] ?? ""
+                        }`}
                       >
                         {appointment.appointmentStatusName}
                       </span>
@@ -207,7 +211,7 @@ export function AdminAppointmentsPage() {
 
                     <td>
                       <div
-                        className="admin-actions"
+                        className={styles.actions}
                         onClick={(event) => event.stopPropagation()}
                       >
                         <button
@@ -224,7 +228,7 @@ export function AdminAppointmentsPage() {
 
                         <button
                           type="button"
-                          className="button-secondary"
+                          className={styles.secondary}
                           onClick={() =>
                             handleStatusUpdate(
                               appointment.appointmentKey,

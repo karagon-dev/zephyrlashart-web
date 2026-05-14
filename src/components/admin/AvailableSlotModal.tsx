@@ -6,6 +6,8 @@ import {
 } from "../../services/availableSlotApi";
 import { hasOverlappingSlots } from "../../lib/slotValidation";
 import type { AvailableSlot } from "../../types/availableSlot";
+import modalStyles from "./Modals.module.css";
+import authStyles from "../../pages/AuthPages.module.css";
 
 type AvailableSlotModalProps = {
   selectedRange?: {
@@ -124,9 +126,9 @@ export function AvailableSlotModal({
   }
 
   return (
-    <div className="modal-backdrop">
-      <section className="appointment-modal">
-        <button type="button" className="modal-close-button" onClick={onClose}>
+    <div className={modalStyles.backdrop}>
+      <section className={modalStyles.modal}>
+        <button type="button" className={modalStyles.closeButton} onClick={onClose}>
           ×
         </button>
 
@@ -140,7 +142,7 @@ export function AvailableSlotModal({
           </p>
         )}
 
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className={authStyles.form} onSubmit={handleSubmit}>
           <label>
             Inicio
             <input

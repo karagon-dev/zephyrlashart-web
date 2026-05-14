@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import styles from "./AdminLayout.module.css";
 
 const NAV_ITEMS = [
   { to: "/admin/calendar", label: "Calendario" },
@@ -8,21 +9,21 @@ const NAV_ITEMS = [
 
 export function AdminSidebar() {
   return (
-    <aside className="admin-sidebar">
-      <div className="admin-sidebar-brand">
+    <aside className={styles.sidebar}>
+      <div className={styles.sidebarBrand}>
         <p className="eyebrow">Panel de administración</p>
         <h1>Zephyr Lash Art</h1>
       </div>
 
-      <nav className="admin-sidebar-nav">
+      <nav className={styles.sidebarNav}>
         {NAV_ITEMS.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
             className={({ isActive }) =>
               isActive
-                ? "admin-sidebar-link is-active"
-                : "admin-sidebar-link"
+                ? `${styles.sidebarLink} ${styles.sidebarLinkActive}`
+                : styles.sidebarLink
             }
           >
             {item.label}

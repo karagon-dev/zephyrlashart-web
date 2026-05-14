@@ -1,6 +1,8 @@
+import styles from './Contact.module.css';
+
 function Contact() {
   return (
-    <section className="section contact-section" id="contact">
+    <section className={`section ${styles.section}`} id="contact">
       <div className="contact-content">
         <p className="eyebrow">Contacto</p>
         <h2>¿Listo para tu próxima cita de pestañas o cejas?</h2>
@@ -11,7 +13,7 @@ function Contact() {
         </p>
       </div>
 
-      <div className="contact-grid">
+      <div className={styles.grid}>
         <a href="https://wa.me/50600000000" target="_blank" rel="noreferrer">
           <span>WhatsApp</span>
           <strong>Reservar mediante chat</strong>

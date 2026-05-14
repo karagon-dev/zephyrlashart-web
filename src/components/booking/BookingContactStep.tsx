@@ -1,3 +1,5 @@
+import styles from './BookingContactStep.module.css';
+
 type ContactFormData = {
   name: string;
   email: string;
@@ -12,15 +14,15 @@ type Props = {
 
 function BookingContactStep({ formData, onChange }: Props) {
   return (
-    <div className="booking-step">
-      <div className="booking-step__header">
+    <div className={styles.step}>
+      <div className={styles.header}>
         <div>
           <h3>Tu información</h3>
           <p>Usaremos esto para confirmar tu solicitud de cita.</p>
         </div>
       </div>
 
-      <div className="booking-contact-grid">
+      <div className={styles.grid}>
         <label>
           Nombre completo
           <input
@@ -51,7 +53,7 @@ function BookingContactStep({ formData, onChange }: Props) {
           />
         </label>
 
-        <label className="booking-contact-grid__full">
+        <label className={styles.full}>
           Notas
           <textarea
             value={formData.notes}

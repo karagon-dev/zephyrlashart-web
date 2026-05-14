@@ -1,0 +1,131 @@
+.toolbar {
+  width: min(100%, 1180px);
+  margin: 0 auto 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: end;
+}
+
+.toolbar h2 {
+  margin: 0.35rem 0 0;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+.filters,
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.filters button,
+.actions button {
+  border: 1px solid rgba(160, 120, 120, 0.28);
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  background: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.filters button.active,
+.actions button:not(.secondary) {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+.actions button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.card {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  overflow-x: auto;
+  border: 1px solid rgba(160, 120, 120, 0.22);
+  border-radius: 1.5rem;
+  background: rgba(255, 250, 250, 0.92);
+  box-shadow: 0 2rem 5rem rgba(85, 54, 54, 0.1);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.table th,
+.table td {
+  padding: 1.15rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(160, 120, 120, 0.16);
+  vertical-align: middle;
+}
+
+.table th {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+}
+
+.table td span {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--color-muted);
+  font-size: 0.92rem;
+}
+
+.statusBadge {
+  display: inline-block !important;
+  width: fit-content;
+  margin-top: 0 !important;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 214, 220, 0.75);
+  color: var(--color-primary) !important;
+  font-weight: 800;
+  font-size: 0.85rem !important;
+}
+
+.statusBadgeConfirmed {
+  background: rgba(74, 222, 128, 0.2);
+  color: #15803d !important;
+}
+
+.statusBadgePending {
+  background: rgba(255, 214, 220, 0.75);
+  color: var(--color-primary) !important;
+}
+
+.statusBadgeRejected {
+  background: rgba(239, 68, 68, 0.2);
+  color: #991b1b !important;
+}
+
+.state,
+.errorState {
+  width: min(100%, 1180px);
+  margin: 1rem auto;
+}
+
+.errorState {
+  color: #9f1d35;
+  font-weight: 700;
+}
+
+.emptyRow {
+  padding: 3rem 1rem !important;
+  text-align: center !important;
+  color: var(--color-muted);
+  font-weight: 700;
+}
+
+.calendarCard {
+  padding: 1.25rem;
+  margin-bottom: 2.5rem;
+}

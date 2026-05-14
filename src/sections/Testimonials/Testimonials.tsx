@@ -16,9 +16,11 @@ const testimonials = [
   },
 ];
 
+import styles from './Testimonials.module.css';
+
 function Testimonials() {
   return (
-    <section className="section testimonials-section">
+    <section className={`section ${styles.section}`}>
       <div className="section__header">
         <p className="eyebrow">Amor de los clientes</p>
         <h2>Resultados suaves, clientes felices.</h2>
@@ -28,9 +30,9 @@ function Testimonials() {
         </p>
       </div>
 
-      <div className="testimonials-grid">
+      <div className={styles.grid}>
         {testimonials.map((item) => (
-          <article className="testimonial-card" key={item.name}>
+          <article className={styles.card} key={item.name}>
             <p>“{item.text}”</p>
 
             <div>

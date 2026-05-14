@@ -13,6 +13,7 @@ import type {
   AppointmentListItem,
 } from "../types/appointment";
 import type { AvailableSlot } from "../types/availableSlot";
+import styles from "./AdminPages.module.css";
 
 export function AdminCalendarPage() {
   const [appointments, setAppointments] = useState<AppointmentListItem[]>([]);
@@ -88,8 +89,8 @@ export function AdminCalendarPage() {
 
   return (
     <AdminLayout title="Calendario" eyebrow="Descripción del cronograma">
-      {errorMessage && <p className="admin-state">{errorMessage}</p>}
-      {isLoading && <p className="admin-state">Cargando calendario...</p>}
+      {errorMessage && <p className={styles.state}>{errorMessage}</p>}
+      {isLoading && <p className={styles.state}>Cargando calendario...</p>}
 
       <AppointmentCalendar
         appointments={displayedAppointments}
