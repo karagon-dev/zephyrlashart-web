@@ -5,6 +5,7 @@ import BookingServiceStep from '../../components/booking/BookingServiceStep';
 import BookingTimeStep from '../../components/booking/BookingTimeStep';
 import { createAppointment } from '../../services/appointmentApi';
 import { getAvailableSlots } from '../../services/availableSlotApi';
+import { useAuth } from '../../context/AuthContext';
 import type { AvailableSlot } from '../../types/availableSlot';
 
 export type BookingService = {
@@ -32,6 +33,7 @@ const services: BookingService[] = [
 const totalSteps = 4;
 
 function Booking() {
+  const { user } = useAuth();
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedService, setSelectedService] = useState<BookingService | null>(null);
   const [selectedDate, setSelectedDate] = useState('');
@@ -43,6 +45,18 @@ function Booking() {
     phone: '',
     notes: '',
   });
+
+  // Pre-fill form data if user is logged in
+  useEffect(() => {
+    if (user?.clientFirstName && user?.clientEmail && user?.clientPhoneNumber) {
+      setFormData({
+        name: `${user.clientFirstName}${user.clientLastName ? ' ' + user.clientLastName : ''}`,
+        email: user.clientEmail,
+        phone: user.clientPhoneNumber,
+        notes: '',
+      });
+    }
+  }, [user]);
 
   const [availableSlots, setAvailableSlots] = useState<AvailableSlot[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -137,7 +151,7 @@ function Booking() {
       setErrorMessage('');
 
       await createAppointment({
-        clientKey: null,
+        clientKey: user?.clientKey || null,
         clientName: formData.name,
         clientEmail: formData.email,
         clientPhoneNumber: formData.phone,

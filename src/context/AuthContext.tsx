@@ -104,15 +104,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (request: LoginRequest): Promise<AuthUser> => {
     const response: AuthResponse = await loginRequest(request);
 
+    // Merge client info into user object for easier access
+    const userWithClient: AuthUser = {
+      ...response.user,
+      ...(response.client && {
+        clientKey: response.client.clientKey,
+        clientFirstName: response.client.firstName,
+        clientLastName: response.client.lastName,
+        clientEmail: response.client.email,
+        clientPhoneNumber: response.client.phoneNumber,
+      }),
+    };
+
     localStorage.setItem(TOKEN_KEY, response.token);
-    localStorage.setItem(USER_KEY, JSON.stringify(response.user));
+    localStorage.setItem(USER_KEY, JSON.stringify(userWithClient));
 
     setToken(response.token);
-    setUser(response.user);
+    setUser(userWithClient);
 
     resetSessionTimeout();
 
-    return response.user;
+    return userWithClient;
   };
 
   const logout = () => {
