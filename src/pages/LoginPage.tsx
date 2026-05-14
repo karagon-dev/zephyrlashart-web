@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export function LoginPage() {
@@ -75,6 +75,22 @@ export function LoginPage() {
           <button type="submit" disabled={isLoading}>
             {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
           </button>
+
+          <p style={{ textAlign: "center", marginTop: "1.5rem", fontSize: "0.9rem" }}>
+            ¿No tienes una cuenta?{" "}
+            <Link
+              to="/register"
+              style={{
+                color: "var(--color-primary)",
+                fontWeight: "600",
+                textDecoration: "none",
+                borderBottom: "2px solid var(--color-primary)",
+                paddingBottom: "2px",
+              }}
+            >
+              Crear cuenta
+            </Link>
+          </p>
         </form>
       </section>
     </main>
