@@ -13,6 +13,7 @@ import type {
   AppointmentListItem,
 } from "../types/appointment";
 import type { AvailableSlot } from "../types/availableSlot";
+import styles from "./AdminPages.module.css";
 
 export function AdminCalendarPage() {
   const [appointments, setAppointments] = useState<AppointmentListItem[]>([]);
@@ -32,7 +33,7 @@ export function AdminCalendarPage() {
     useState<AvailableSlot | null>(null);
 
   const displayedAppointments = useMemo(
-    () => appointments.filter((appointment) => appointment.appointmentStatusKey !== 3),
+    () => appointments.filter((appointment) => appointment.appointmentStatusKey === 2),
     [appointments]
   );
 
@@ -49,7 +50,7 @@ export function AdminCalendarPage() {
       setAppointments(appointmentsData);
       setAvailableSlots(availableSlotsData);
     } catch {
-      setErrorMessage("Could not load calendar data.");
+      setErrorMessage("No se pudieron cargar los datos del calendario.");
     } finally {
       setIsLoading(false);
     }
@@ -63,7 +64,7 @@ export function AdminCalendarPage() {
       const data = await getAppointmentByKey(appointmentKey);
       setSelectedAppointment(data);
     } catch {
-      setErrorMessage("Could not load appointment details.");
+      setErrorMessage("No se pudieron cargar los detalles de la cita.");
     } finally {
       setIsModalLoading(false);
     }
@@ -87,9 +88,9 @@ export function AdminCalendarPage() {
   }, []);
 
   return (
-    <AdminLayout title="Calendar" eyebrow="Schedule overview">
-      {errorMessage && <p className="admin-state">{errorMessage}</p>}
-      {isLoading && <p className="admin-state">Loading calendar...</p>}
+    <AdminLayout title="Calendario" eyebrow="Descripción del cronograma">
+      {errorMessage && <p className={styles.state}>{errorMessage}</p>}
+      {isLoading && <p className={styles.state}>Cargando calendario...</p>}
 
       <AppointmentCalendar
         appointments={displayedAppointments}

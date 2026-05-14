@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import styles from "./Modals.module.css";
 
 type CalendarEventType = "appointment" | "availableSlot";
 
@@ -37,16 +38,16 @@ export function DayEventsModal({
   };
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
+    <div className={styles.backdrop} onClick={onClose}>
       <div
-        className="appointment-modal day-events-modal"
+        className={`${styles.modal} ${styles.dayEvents}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="day-events-modal-header">
+        <div className={styles.dayEventsHeader}>
           <h2>{format(new Date(date), "EEEE, MMM d")}</h2>
           <button
             type="button"
-            className="day-events-modal-close"
+            className={styles.dayEventsClose}
             onClick={onClose}
             title="Close"
           >
@@ -54,21 +55,31 @@ export function DayEventsModal({
           </button>
         </div>
 
-        <div className="day-events-modal-content">
+        <div className={styles.dayEventsContent}>
           {events.length === 0 ? (
-            <p className="day-events-empty">No events scheduled for this day.</p>
+            <p className={styles.dayEventsEmpty}>No hay eventos programados para este día.</p>
           ) : (
-            <div className="day-events-list">
-              {events.map((event) => (
-                <button
-                  key={event.id}
-                  className={`day-event-item day-event-item-${event.eventType}`}
-                  onClick={() => handleEventClick(event)}
-                >
-                  <span className={`day-event-badge day-event-badge-${event.eventType}`}></span>
-                  <span className="day-event-title">{event.title}</span>
-                </button>
-              ))}
+            <div className={styles.dayEventsList}>
+              {events.map((event) => {
+                const itemClass =
+                  event.eventType === "appointment"
+                    ? `${styles.eventItem} ${styles.eventItemAppointment}`
+                    : `${styles.eventItem} ${styles.eventItemSlot}`;
+                const badgeClass =
+                  event.eventType === "appointment"
+                    ? `${styles.eventBadge} ${styles.eventBadgeAppointment}`
+                    : `${styles.eventBadge} ${styles.eventBadgeSlot}`;
+                return (
+                  <button
+                    key={event.id}
+                    className={itemClass}
+                    onClick={() => handleEventClick(event)}
+                  >
+                    <span className={badgeClass}></span>
+                    <span className={styles.eventTitle}>{event.title}</span>
+                  </button>
+                );
+              })}
             </div>
           )}
         </div>

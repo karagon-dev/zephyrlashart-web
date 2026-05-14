@@ -1,0 +1,72 @@
+.shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 1.25rem;
+  background: linear-gradient(180deg, #1f1419, #2a1c22);
+  color: #f3e6ea;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.sidebarBrand h1 {
+  margin: 0.35rem 0 0;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.sidebarBrand :global(.eyebrow) {
+  color: rgba(255, 214, 220, 0.85);
+}
+
+.sidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sidebarLink {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: 0.65rem;
+  color: rgba(243, 230, 234, 0.78);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sidebarLink:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.sidebarLinkActive {
+  background: rgba(255, 214, 220, 0.18);
+  color: #fff;
+}
+
+.page {
+  flex: 1;
+  min-height: 100vh;
+  padding: 2rem;
+  background:
+    radial-gradient(circle at top right, rgba(255, 214, 220, 0.55), transparent 32rem),
+    var(--color-bg);
+}
+
+.header {
+  width: min(100%, 1180px);
+  margin: 0 auto 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

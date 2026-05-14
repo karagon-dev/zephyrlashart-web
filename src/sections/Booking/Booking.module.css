@@ -1,0 +1,168 @@
+.section {
+  background: var(--color-surface);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.formMessage {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.formMessageError {
+  background: rgba(239, 68, 68, 0.1);
+  color: #991b1b;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.wizard {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.wizardContent {
+  border: 1px solid #eacaca;
+  background: rgba(255, 255, 255, 0.86);
+  border-radius: 28px;
+  padding: 1.5rem;
+  box-shadow: 0 24px 60px rgba(99, 61, 61, 0.08);
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.progress {
+  display: grid;
+  gap: 0.65rem;
+  max-width: 900px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.progress span {
+  font-weight: 800;
+  color: #8e5e5e;
+}
+
+.progressBar {
+  height: 10px;
+  border-radius: 999px;
+  background: #f9d6d8;
+  overflow: hidden;
+}
+
+.progressBar div {
+  height: 100%;
+  background: #a77e7e;
+  border-radius: inherit;
+  transition: width 180ms ease;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 900px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.actions :global(.button) {
+  min-height: 52px;
+  flex: 1;
+}
+
+.toast {
+  position: fixed;
+  top: 28px;
+  right: 28px;
+  z-index: 999;
+  min-width: 340px;
+  max-width: 420px;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  border-radius: 20px;
+  backdrop-filter: blur(14px);
+  animation: bookingToastIn 240ms ease;
+}
+
+.toastSuccess {
+  background: rgba(232, 248, 236, 0.96);
+  border: 1px solid #9fd5ad;
+  box-shadow: 0 20px 45px rgba(73, 122, 89, 0.18);
+}
+
+.toastIcon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #5ea873;
+  color: white;
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+.toast strong {
+  display: block;
+  color: #2f5d3b;
+  font-size: 0.95rem;
+}
+
+.toast p {
+  margin: 0.25rem 0 0;
+  color: #4f7a5c;
+  line-height: 1.45;
+  font-size: 0.88rem;
+}
+
+@keyframes bookingToastIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 700px) {
+  .actions {
+    flex-direction: column;
+  }
+
+  .wizardContent {
+    min-height: 460px;
+  }
+}
+
+@media (max-width: 640px) {
+  .toast {
+    left: 16px;
+    right: 16px;
+    top: 16px;
+    min-width: unset;
+    max-width: unset;
+  }
+}

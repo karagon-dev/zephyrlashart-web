@@ -10,6 +10,7 @@ import type {
   AppointmentDetail,
   AppointmentListItem,
 } from "../types/appointment";
+import styles from "./AdminPages.module.css";
 
 const STATUS = {
   pending: 1,
@@ -56,7 +57,7 @@ export function AdminAppointmentsPage() {
       const data = await getAppointments();
       setAppointments(data);
     } catch {
-      setErrorMessage("Could not load appointments.");
+      setErrorMessage("No se pudieron cargar las citas.");
     } finally {
       setIsLoading(false);
     }
@@ -75,7 +76,7 @@ export function AdminAppointmentsPage() {
 
       await loadAppointments();
     } catch {
-      setErrorMessage("Could not update appointment status.");
+      setErrorMessage("No se pudo actualizar el estado de la cita.");
     }
   }
 
@@ -87,7 +88,7 @@ export function AdminAppointmentsPage() {
       const data = await getAppointmentByKey(appointmentKey);
       setSelectedAppointment(data);
     } catch {
-      setErrorMessage("Could not load appointment details.");
+      setErrorMessage("No se pudieron cargar los detalles de la cita.");
     } finally {
       setIsModalLoading(false);
     }
@@ -108,69 +109,69 @@ export function AdminAppointmentsPage() {
   }, []);
 
   return (
-    <AdminLayout title="Appointment requests" eyebrow="Manage bookings">
-      <section className="admin-toolbar">
-        <div className="admin-filters">
+    <AdminLayout title="Solicitudes de citas" eyebrow="Administrar reservas">
+      <section className={styles.toolbar}>
+        <div className={styles.filters}>
           <button
             type="button"
-            className={statusFilter === "all" ? "is-active" : ""}
+            className={statusFilter === "all" ? styles.active : ""}
             onClick={() => setStatusFilter("all")}
           >
-            All
+            Todos
           </button>
 
           <button
             type="button"
-            className={statusFilter === "pending" ? "is-active" : ""}
+            className={statusFilter === "pending" ? styles.active : ""}
             onClick={() => setStatusFilter("pending")}
           >
-            Pending
+            Pendiente
           </button>
 
           <button
             type="button"
-            className={statusFilter === "confirmed" ? "is-active" : ""}
+            className={statusFilter === "confirmed" ? styles.active : ""}
             onClick={() => setStatusFilter("confirmed")}
           >
-            Confirmed
+            Confirmado
           </button>
 
           <button
             type="button"
-            className={statusFilter === "rejected" ? "is-active" : ""}
+            className={statusFilter === "rejected" ? styles.active : ""}
             onClick={() => setStatusFilter("rejected")}
           >
-            Rejected
+            Rechazado
           </button>
         </div>
       </section>
 
-      <section className="admin-card">
-        <table className="admin-table">
+      <section className={styles.card}>
+        <table className={styles.table}>
           <thead>
             <tr>
-              <th>Client</th>
-              <th>Service</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th>Notes</th>
-              <th>Actions</th>
+              <th>Cliente</th>
+              <th>Servicio</th>
+              <th>Fecha</th>
+              <th>Estado</th>
+              <th>Notas</th>
+              <th>Acciones</th>
             </tr>
           </thead>
 
           <tbody>
-            {isLoading && (
+            {errorMessage && <div style={{color: "red", padding: "10px"}}>{errorMessage}</div>} {isLoading && (
               <tr>
-                <td colSpan={6} className="admin-empty-row">
-                  Loading appointments...
+                <td colSpan={6} className={styles.emptyRow}>
+                  Cargando citas...
                 </td>
               </tr>
             )}
 
             {!isLoading && filteredAppointments.length === 0 && (
               <tr>
-                <td colSpan={6} className="admin-empty-row">
-                  No appointments found.
+                <td colSpan={6} className={styles.emptyRow}>
+                  No se encontraron citas.
                 </td>
               </tr>
             )}
@@ -180,7 +181,6 @@ export function AdminAppointmentsPage() {
                 return (
                   <tr
                     key={appointment.appointmentKey}
-                    className="admin-table-row"
                     onClick={() =>
                       handleSelectAppointment(appointment.appointmentKey)
                     }
@@ -197,7 +197,11 @@ export function AdminAppointmentsPage() {
 
                     <td>
                       <span
-                        className={`status-badge ${appointment.appointmentStatusName.toLowerCase()}`}
+                        className={`${styles.statusBadge} ${
+                          styles[
+                            `statusBadge${appointment.appointmentStatusName.charAt(0).toUpperCase()}${appointment.appointmentStatusName.slice(1).toLowerCase()}`
+                          ] ?? ""
+                        }`}
                       >
                         {appointment.appointmentStatusName}
                       </span>
@@ -207,7 +211,7 @@ export function AdminAppointmentsPage() {
 
                     <td>
                       <div
-                        className="admin-actions"
+                        className={styles.actions}
                         onClick={(event) => event.stopPropagation()}
                       >
                         <button
@@ -219,12 +223,12 @@ export function AdminAppointmentsPage() {
                             )
                           }
                         >
-                          Confirm
+                          Confirmar
                         </button>
 
                         <button
                           type="button"
-                          className="button-secondary"
+                          className={styles.secondary}
                           onClick={() =>
                             handleStatusUpdate(
                               appointment.appointmentKey,
@@ -232,7 +236,7 @@ export function AdminAppointmentsPage() {
                             )
                           }
                         >
-                          Reject
+                          Rechazar
                         </button>
                       </div>
                     </td>

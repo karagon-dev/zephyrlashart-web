@@ -1,4 +1,5 @@
 import type { AppointmentDetail } from "../../types/appointment";
+import styles from "./Modals.module.css";
 
 type AppointmentDetailModalProps = {
   appointment: AppointmentDetail | null;
@@ -16,69 +17,69 @@ export function AppointmentDetailModal({
   }
 
   return (
-    <div className="modal-backdrop">
-      <section className="appointment-modal">
-        <button type="button" className="modal-close-button" onClick={onClose}>
+    <div className={styles.backdrop}>
+      <section className={styles.modal}>
+        <button type="button" className={styles.closeButton} onClick={onClose}>
           ×
         </button>
 
-        {isLoading && <p>Loading appointment details...</p>}
+        {isLoading && <p>Cargando detalles de la cita...</p>}
 
         {!isLoading && appointment && (
           <>
-            <p className="eyebrow">Appointment detail</p>
+            <p className="eyebrow">Detalle de cita</p>
 
             <h2>{appointment.clientName}</h2>
 
-            <div className="appointment-modal-grid">
+            <div className={styles.grid}>
               <div>
-                <span>Service</span>
+                <span>Servicio</span>
                 <strong>{appointment.serviceName}</strong>
               </div>
 
               <div>
-                <span>Status</span>
+                <span>Estado</span>
                 <strong>{appointment.appointmentStatusName}</strong>
               </div>
 
               <div>
-                <span>Email</span>
+                <span>Correo electrónico</span>
                 <strong>{appointment.clientEmail}</strong>
               </div>
 
               <div>
-                <span>Phone</span>
+                <span>Teléfono</span>
                 <strong>{appointment.clientPhoneNumber}</strong>
               </div>
 
               <div>
-                <span>Start</span>
+                <span>Inicio</span>
                 <strong>
                   {new Date(appointment.startDateTime).toLocaleString()}
                 </strong>
               </div>
 
               <div>
-                <span>End</span>
+                <span>Fin</span>
                 <strong>
                   {new Date(appointment.endDateTime).toLocaleString()}
                 </strong>
               </div>
 
               <div>
-                <span>Duration</span>
-                <strong>{appointment.durationMinutes} minutes</strong>
+                <span>Duración</span>
+                <strong>{appointment.durationMinutes} minutos</strong>
               </div>
 
               <div>
-                <span>Price</span>
+                <span>Precio</span>
                 <strong>${appointment.price}</strong>
               </div>
             </div>
 
-            <div className="appointment-modal-notes">
-              <span>Notes</span>
-              <p>{appointment.notes ?? "No notes provided."}</p>
+            <div className={styles.notes}>
+              <span>Notas</span>
+              <p>{appointment.notes ?? "No se proporcionaron notas."}</p>
             </div>
           </>
         )}

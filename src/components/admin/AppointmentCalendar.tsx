@@ -6,6 +6,7 @@ import type { AppointmentListItem } from "../../types/appointment";
 import type { AvailableSlot } from "../../types/availableSlot";
 import { CreateBatchSlotModal } from "./CreateBatchSlotModal";
 import { DayEventsModal } from "./DayEventsModal";
+import pageStyles from "../../pages/AdminPages.module.css";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
@@ -108,7 +109,7 @@ function CustomToolbar({
           color: "var(--color-primary)",
         }}
       >
-        Create batch
+        Crear lote
       </button>
     </div>
   );
@@ -183,7 +184,7 @@ export function AppointmentCalendar({
   };
 
   return (
-    <section className="admin-card admin-calendar-card">
+    <section className={`${pageStyles.card} ${pageStyles.calendarCard}`}>
       <CustomToolbar date={currentDate} onNavigate={handleNavigate} onCreateBatch={() => setShowBatchModal(true)} />
       <Calendar
         localizer={localizer}
