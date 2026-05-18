@@ -1,17 +1,76 @@
 .hero {
+  position: relative;
   min-height: calc(100vh - 73px);
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
   gap: 56px;
   align-items: center;
   padding: 96px 7%;
+  overflow: hidden;
   background:
     radial-gradient(circle at 88% 18%, rgba(255, 222, 222, 0.95), transparent 34%),
     linear-gradient(135deg, #fffafa 0%, #fff1f1 100%);
 }
 
+.glow {
+  position: absolute;
+  inset: auto -10% -40% auto;
+  width: 60%;
+  height: 80%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 214, 220, 0.55) 0%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .content {
+  position: relative;
+  z-index: 1;
   max-width: 820px;
+}
+
+.signature {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.signatureMark {
+  display: block;
+  width: 56px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-primary) 50%,
+    transparent 100%
+  );
+}
+
+.accent {
+  position: relative;
+  font-style: italic;
+  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.accent::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.08em;
+  height: 0.16em;
+  background: rgba(255, 214, 220, 0.7);
+  border-radius: 999px;
+  z-index: -1;
 }
 
 .text {
@@ -26,9 +85,51 @@
   margin-top: 34px;
 }
 
+.trust {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: 44px 0 0;
+  padding: 16px 24px;
+  list-style: none;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  width: fit-content;
+  max-width: 100%;
+}
+
+.trust li {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.trust strong {
+  font-size: 1.05rem;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.trust span {
+  font-size: 0.7rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: 4px;
+}
+
+.trustDivider {
+  width: 1px;
+  height: 28px;
+  background: var(--color-border);
+  padding: 0;
+}
+
 .visual {
-  min-height: 520px;
   position: relative;
+  min-height: 560px;
   border-radius: var(--radius-lg);
   background:
     linear-gradient(180deg, rgba(47, 37, 37, 0.04), rgba(47, 37, 37, 0.55)),
@@ -38,11 +139,47 @@
   overflow: hidden;
 }
 
+.visual::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: calc(var(--radius-lg) - 8px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tag {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 18px rgba(47, 37, 37, 0.12);
+}
+
+.tag span {
+  color: var(--color-primary);
+  font-size: 0.85rem;
+}
+
 .card {
   position: absolute;
   left: 24px;
   right: 24px;
   bottom: 24px;
+  z-index: 2;
   display: grid;
   gap: 8px;
   padding: 22px;
@@ -50,6 +187,7 @@
   color: white;
   background: rgba(47, 37, 37, 0.58);
   backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .card span {
@@ -67,6 +205,22 @@
   opacity: 0.85;
 }
 
+.cardLink {
+  margin-top: 10px;
+  padding-top: 12px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: white;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.cardLink:hover {
+  opacity: 0.85;
+  transform: translateX(2px);
+}
+
 @media (max-width: 880px) {
   .hero {
     grid-template-columns: 1fr;
@@ -75,5 +229,15 @@
 
   .visual {
     min-height: 420px;
+  }
+
+  .trust {
+    flex-wrap: wrap;
+    gap: 14px;
+    border-radius: var(--radius-md);
+  }
+
+  .trustDivider {
+    display: none;
   }
 }

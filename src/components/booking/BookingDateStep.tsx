@@ -86,10 +86,12 @@ function BookingDateStep({ availableDates, selectedDate, onSelectDate, isLoading
   return (
     <div className={styles.step}>
       <div className={styles.header}>
-        <div>
-          <h3>Elige una fecha</h3>
-          <p>Las fechas disponibles están resaltadas.</p>
-        </div>
+        <p className={styles.eyebrow}>Paso 02 · Fecha</p>
+        <h3>Elige una fecha</h3>
+        <p className={styles.subtitle}>
+          Las fechas con disponibilidad aparecen resaltadas. Toca una para ver
+          los horarios.
+        </p>
       </div>
 
       {isLoading && <p className={styles.muted}>Cargando fechas disponibles...</p>}
@@ -100,6 +102,11 @@ function BookingDateStep({ availableDates, selectedDate, onSelectDate, isLoading
 
       {!isLoading && availableDates.length > 0 && (
         <div className={styles.calendar}>
+          <div className={styles.legend} aria-hidden="true">
+            <span className={styles.legendChip}><span className={styles.swatchAvailable} /> Disponible</span>
+            <span className={styles.legendChip}><span className={styles.swatchSelected} /> Seleccionada</span>
+          </div>
+
           <div className={styles.navigation}>
             <button 
               className={styles.navBtn}

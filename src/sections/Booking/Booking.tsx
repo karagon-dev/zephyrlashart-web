@@ -206,8 +206,31 @@ function Booking() {
         {errorMessage && <div className={`${styles.formMessage} ${styles.formMessageError}`}>{errorMessage}</div>}
 
         <div className={styles.wizard}>
+          <ol className={styles.stepper} aria-label="Pasos de reserva">
+            {[
+              { n: 1, label: 'Servicio' },
+              { n: 2, label: 'Fecha' },
+              { n: 3, label: 'Hora' },
+              { n: 4, label: 'Detalles' },
+            ].map((s) => {
+              const state =
+                currentStep === s.n
+                  ? styles.stepActive
+                  : currentStep > s.n
+                  ? styles.stepDone
+                  : '';
+              return (
+                <li key={s.n} className={`${styles.stepItem} ${state}`}>
+                  <span className={styles.stepNumber} aria-hidden="true">
+                    {currentStep > s.n ? '✓' : s.n.toString().padStart(2, '0')}
+                  </span>
+                  <span className={styles.stepLabel}>{s.label}</span>
+                </li>
+              );
+            })}
+          </ol>
+
           <div className={styles.progress}>
-            <span>Step {currentStep} of {totalSteps}</span>
             <div className={styles.progressBar}>
               <div style={{ width: `${(currentStep / totalSteps) * 100}%` }} />
             </div>
