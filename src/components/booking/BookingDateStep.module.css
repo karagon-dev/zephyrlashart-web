@@ -4,8 +4,32 @@
 }
 
 .header {
-  display: block;
-  margin-bottom: 1.25rem;
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.header h3 {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--color-muted);
+  line-height: 1.55;
+  max-width: 520px;
 }
 
 .muted {
@@ -14,9 +38,47 @@
 
 .calendar {
   width: fit-content;
-  margin: 1.25rem auto 0;
+  margin: 1rem auto 0;
   display: grid;
   gap: 0.85rem;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.legendChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+}
+
+.swatchAvailable,
+.swatchSelected {
+  width: 10px;
+  height: 10px;
+  border-radius: 4px;
+}
+
+.swatchAvailable {
+  background: #f4e3e3;
+  border: 1px solid #b58d8d;
+}
+
+.swatchSelected {
+  background: #8f6b6b;
+  border: 1px solid #8f6b6b;
 }
 
 .navigation {
@@ -30,11 +92,14 @@
 
 .calendarHeader {
   flex: 1;
-  padding: 0.8rem 1rem;
-  border-radius: 16px;
+  padding: 0.7rem 1rem;
+  border-radius: 14px;
   text-align: center;
-  background: #f7eded;
-  color: #5e4343;
+  background: #fff5f5;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
 }
 
 .navBtn {
@@ -80,6 +145,7 @@
   font-weight: 800;
   color: #8f6b6b;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .day,
@@ -95,6 +161,7 @@
   color: #b9a0a0;
   font-weight: 800;
   cursor: not-allowed;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 
 .dayAvailable {
@@ -108,10 +175,12 @@
 .dayAvailable:hover {
   transform: translateY(-2px);
   border-color: #8f6b6b;
+  background: #f0d8d8;
 }
 
 .daySelected {
   background: #8f6b6b;
   color: #fff;
   border-color: #8f6b6b;
+  box-shadow: 0 14px 30px rgba(143, 107, 107, 0.28);
 }
