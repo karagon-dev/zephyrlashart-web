@@ -6,7 +6,7 @@ import {
   eachDayOfInterval,
   getDay,
 } from "date-fns";
-import { enUS } from "date-fns/locale";
+import { es } from "date-fns/locale";
 import { createBatchAvailableSlots } from "../../services/availableSlotApi";
 import type { CreateBatchAvailableSlotsRequest } from "../../services/availableSlotApi";
 import modalStyles from "./Modals.module.css";
@@ -20,12 +20,14 @@ export type CreateBatchSlotRange = {
 type CreateBatchSlotModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  onCreated?: () => void;
   currentMonth: Date;
 };
 
 export function CreateBatchSlotModal({
   isOpen,
   onClose,
+  onCreated,
   currentMonth,
 }: CreateBatchSlotModalProps) {
   const [timeRanges, setTimeRanges] = useState<CreateBatchSlotRange[]>([
@@ -121,6 +123,7 @@ export function CreateBatchSlotModal({
       };
 
       await createBatchAvailableSlots(payload);
+      onCreated?.();
       onClose();
     } catch (error) {
       console.error(error);
@@ -226,7 +229,7 @@ export function CreateBatchSlotModal({
 
           <div style={{ marginBottom: "1.5rem" }}>
             <label style={{ display: "block", marginBottom: "0.75rem" }}>
-              <strong>Seleccionar días en {format(viewMonth, "MMMM yyyy", { locale: enUS })}</strong>
+              <strong>Seleccionar días en {format(viewMonth, "MMMM yyyy", { locale: es })}</strong>
             </label>
             <CalendarPicker
               month={viewMonth}
@@ -292,7 +295,7 @@ function CalendarPicker({
           ← Anterior
         </button>
         <span style={{ fontWeight: "600", color: "var(--color-primary)" }}>
-          {format(month, "MMMM yyyy", { locale: enUS })}
+          {format(month, "MMMM yyyy", { locale: es })}
         </span>
         <button
           type="button"

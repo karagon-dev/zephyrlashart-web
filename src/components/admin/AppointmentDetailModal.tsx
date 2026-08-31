@@ -55,14 +55,14 @@ export function AppointmentDetailModal({
               <div>
                 <span>Inicio</span>
                 <strong>
-                  {new Date(appointment.startDateTime).toLocaleString()}
+                  {new Date(appointment.startDateTime).toLocaleString("es-CR")}
                 </strong>
               </div>
 
               <div>
                 <span>Fin</span>
                 <strong>
-                  {new Date(appointment.endDateTime).toLocaleString()}
+                  {new Date(appointment.endDateTime).toLocaleString("es-CR")}
                 </strong>
               </div>
 

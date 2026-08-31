@@ -1,37 +1,27 @@
-import styles from './Services.module.css';
-
-const services = [
-  {
-    number: '01',
-    title: 'Extensiones de pestañas',
-    description:
-      'Juegos clásicos, híbridos y de volumen diseñados para realzar tu mirada natural.',
-    duration: '2 – 3 h',
-    price: 'Desde $45',
-    includes: ['Mapeo personalizado', 'Materiales premium', 'Retoque a 7 días'],
-    featured: true,
-  },
-  {
-    number: '02',
-    title: 'Diseño de cejas',
-    description:
-      'Mapeo, forma, limpieza y estilismo para cejas equilibradas y bien definidas.',
-    duration: '45 min',
-    price: 'Desde $25',
-    includes: ['Mapeo facial', 'Depilación con hilo o cera', 'Tinte opcional'],
-  },
-  {
-    number: '03',
-    title: 'Levantamiento y tinte',
-    description:
-      'Opción suave y de bajo mantenimiento para levantar y oscurecer tus pestañas naturales.',
-    duration: '1 h',
-    price: 'Desde $35',
-    includes: ['Lifting con keratina', 'Tinte negro suave', 'Resultados ~6 semanas'],
-  },
-];
+import { useEffect, useState } from "react";
+import { getActiveServiceTypes } from "../../services/serviceTypeApi";
+import { formatDuration, formatPrice } from "../../lib/format";
+import type { ServiceType } from "../../types/serviceType";
+import styles from "./Services.module.css";
 
 function Services() {
+  const [services, setServices] = useState<ServiceType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    void (async () => {
+      try {
+        const data = await getActiveServiceTypes();
+        setServices(data);
+      } catch {
+        setErrorMessage("No se pudieron cargar los servicios.");
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, []);
+
   return (
     <section className={`section ${styles.section}`} id="services">
       <div className={`section__header ${styles.header}`}>
@@ -44,37 +34,32 @@ function Services() {
         </p>
       </div>
 
+      {isLoading && <p>Cargando servicios...</p>}
+      {errorMessage && <p>{errorMessage}</p>}
+
       <div className={styles.grid}>
-        {services.map((service) => (
+        {services.map((service, index) => (
           <article
-            className={`${styles.card} ${service.featured ? styles.cardFeatured : ''}`}
-            key={service.title}
+            className={`${styles.card} ${index === 0 ? styles.cardFeatured : ""}`}
+            key={service.serviceTypeKey}
           >
-            {service.featured && (
+            {index === 0 && (
               <span className={styles.badge} aria-label="Servicio destacado">
                 ✦ Favorito del estudio
               </span>
             )}
 
             <span className={styles.number} aria-hidden="true">
-              {service.number}
+              {String(index + 1).padStart(2, "0")}
             </span>
 
-            <h3>{service.title}</h3>
-            <p>{service.description}</p>
-
-            <ul className={styles.includes} aria-label="Qué incluye">
-              {service.includes.map((item) => (
-                <li key={item}>
-                  <span className={styles.bullet} aria-hidden="true" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <h3>{service.serviceName}</h3>
 
             <div className={styles.cardFooter}>
-              <span className={styles.duration}>{service.duration}</span>
-              <strong>{service.price}</strong>
+              <span className={styles.duration}>
+                {formatDuration(service.durationMinutes)}
+              </span>
+              <strong>{formatPrice(service.price)}</strong>
             </div>
           </article>
         ))}

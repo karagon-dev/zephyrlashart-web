@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import { format, getDay, parse, startOfWeek } from "date-fns";
-import { enUS } from "date-fns/locale";
+import { es } from "date-fns/locale";
 import type { AppointmentListItem } from "../../types/appointment";
 import type { AvailableSlot } from "../../types/availableSlot";
 import { CreateBatchSlotModal } from "./CreateBatchSlotModal";
@@ -11,7 +11,7 @@ import pageStyles from "../../pages/AdminPages.module.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const locales = {
-  "en-US": enUS,
+  es,
 };
 
 const localizer = dateFnsLocalizer({
@@ -38,6 +38,7 @@ type AppointmentCalendarProps = {
   onSelectAppointment: (appointmentKey: number) => void;
   onSelectAvailableSlot: (availableSlotKey: number) => void;
   onSelectEmptySlot: (start: Date, end: Date) => void;
+  onSlotsChanged?: () => void;
 };
 
 function CustomToolbar({
@@ -72,7 +73,7 @@ function CustomToolbar({
         </button>
 
         <span style={{ minWidth: "120px", textAlign: "center" }}>
-          {format(date, "MMMM yyyy")}
+          {format(date, "MMMM yyyy", { locale: es })}
         </span>
 
         <button
@@ -121,6 +122,7 @@ export function AppointmentCalendar({
   onSelectAppointment,
   onSelectAvailableSlot,
   onSelectEmptySlot,
+  onSlotsChanged,
 }: AppointmentCalendarProps) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [dayEventsDate, setDayEventsDate] = useState<string | null>(null);
@@ -187,6 +189,7 @@ export function AppointmentCalendar({
     <section className={`${pageStyles.card} ${pageStyles.calendarCard}`}>
       <CustomToolbar date={currentDate} onNavigate={handleNavigate} onCreateBatch={() => setShowBatchModal(true)} />
       <Calendar
+        culture="es"
         localizer={localizer}
         events={events}
         startAccessor="start"
@@ -230,6 +233,10 @@ export function AppointmentCalendar({
       <CreateBatchSlotModal
         isOpen={showBatchModal}
         onClose={() => setShowBatchModal(false)}
+        onCreated={() => {
+          setShowBatchModal(false);
+          onSlotsChanged?.();
+        }}
         currentMonth={currentDate}
       />
     </section>

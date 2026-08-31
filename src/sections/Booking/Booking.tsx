@@ -4,7 +4,9 @@ import BookingDateStep from '../../components/booking/BookingDateStep';
 import BookingServiceStep from '../../components/booking/BookingServiceStep';
 import BookingTimeStep from '../../components/booking/BookingTimeStep';
 import { createAppointment } from '../../services/appointmentApi';
-import { getAvailableSlots } from '../../services/availableSlotApi';
+import { getPublicAvailableSlots } from '../../services/availableSlotApi';
+import { getActiveServiceTypes } from '../../services/serviceTypeApi';
+import { formatDuration, formatPrice } from '../../lib/format';
 import { useAuth } from '../../context/AuthContext';
 import type { AvailableSlot } from '../../types/availableSlot';
 import styles from './Booking.module.css';
@@ -23,20 +25,13 @@ type ContactFormData = {
   notes: string;
 };
 
-const services: BookingService[] = [
-  { key: 1, name: 'Extensiones de pestañas clásicas', duration: '2h', description: 'Mejora de pestañas natural y elegante.' },
-  { key: 2, name: 'Extensiones de pestañas híbridas', duration: '2h 30m', description: 'Una mezcla suave de pestañas clásicas y de volumen.' },
-  { key: 3, name: 'Extensiones de pestañas de volumen', duration: '3h', description: 'Mirada de pestañas más completa y dramática.' },
-  { key: 4, name: 'Laminación de cejas', duration: '1h', description: 'Cejas definidas, levantadas y pulidas.' },
-  { key: 5, name: 'Levantamiento y tinte de pestañas', duration: '1h 30m', description: 'Pestañas naturales levantadas con tinte.' },
-];
-
 const totalSteps = 4;
 
 function Booking() {
   const { user } = useAuth();
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedService, setSelectedService] = useState<BookingService | null>(null);
+  const [services, setServices] = useState<BookingService[]>([]);
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedSlot, setSelectedSlot] = useState<AvailableSlot | null>(null);
 
@@ -70,7 +65,7 @@ function Booking() {
       setIsLoading(true);
       setErrorMessage('');
 
-      const slots = await getAvailableSlots();
+      const slots = await getPublicAvailableSlots();
       setAvailableSlots(slots);
     } catch {
       setErrorMessage('No se pudieron cargar los espacios disponibles.');
@@ -83,6 +78,24 @@ function Booking() {
   useEffect(() => {
     fetchAvailableSlots();
   }, [fetchAvailableSlots]);
+
+  useEffect(() => {
+    void (async () => {
+      try {
+        const data = await getActiveServiceTypes();
+        setServices(
+          data.map((item) => ({
+            key: item.serviceTypeKey,
+            name: item.serviceName,
+            duration: formatDuration(item.durationMinutes),
+            description: formatPrice(item.price),
+          }))
+        );
+      } catch {
+        setErrorMessage("No se pudieron cargar los servicios.");
+      }
+    })();
+  }, []);
 
   const availableDates = useMemo(() => {
     const dates = new Set(
@@ -178,7 +191,7 @@ function Booking() {
 
       await fetchAvailableSlots();
     } catch {
-      setErrorMessage('Failed to create appointment. Please try again.');
+      setErrorMessage('No se pudo enviar la solicitud. Inténtalo de nuevo.');
     } finally {
       setIsSubmitting(false);
     }

@@ -21,7 +21,14 @@ const STATUS = {
   noShow: 6,
 };
 
-type StatusFilter = "all" | "pending" | "confirmed" | "rejected";
+type StatusFilter =
+  | "all"
+  | "pending"
+  | "confirmed"
+  | "rejected"
+  | "completed"
+  | "cancelled"
+  | "noShow";
 
 export function AdminAppointmentsPage() {
   const [appointments, setAppointments] = useState<AppointmentListItem[]>([]);
@@ -41,6 +48,9 @@ export function AdminAppointmentsPage() {
       pending: STATUS.pending,
       confirmed: STATUS.confirmed,
       rejected: STATUS.rejected,
+      completed: STATUS.completed,
+      cancelled: STATUS.cancelled,
+      noShow: STATUS.noShow,
     };
 
     return appointments.filter(
@@ -95,7 +105,7 @@ export function AdminAppointmentsPage() {
   }
 
   function formatDate(date: string) {
-    return new Date(date).toLocaleString("en-US", {
+    return new Date(date).toLocaleString("es-CR", {
       weekday: "short",
       month: "short",
       day: "numeric",
@@ -143,8 +153,34 @@ export function AdminAppointmentsPage() {
           >
             Rechazado
           </button>
+
+          <button
+            type="button"
+            className={statusFilter === "completed" ? styles.active : ""}
+            onClick={() => setStatusFilter("completed")}
+          >
+            Completado
+          </button>
+
+          <button
+            type="button"
+            className={statusFilter === "cancelled" ? styles.active : ""}
+            onClick={() => setStatusFilter("cancelled")}
+          >
+            Cancelado
+          </button>
+
+          <button
+            type="button"
+            className={statusFilter === "noShow" ? styles.active : ""}
+            onClick={() => setStatusFilter("noShow")}
+          >
+            No asistió
+          </button>
         </div>
       </section>
+
+      {errorMessage && <p className={styles.state}>{errorMessage}</p>}
 
       <section className={styles.card}>
         <table className={styles.table}>
@@ -160,7 +196,7 @@ export function AdminAppointmentsPage() {
           </thead>
 
           <tbody>
-            {errorMessage && <div style={{color: "red", padding: "10px"}}>{errorMessage}</div>} {isLoading && (
+            {isLoading && (
               <tr>
                 <td colSpan={6} className={styles.emptyRow}>
                   Cargando citas...
@@ -214,30 +250,76 @@ export function AdminAppointmentsPage() {
                         className={styles.actions}
                         onClick={(event) => event.stopPropagation()}
                       >
-                        <button
-                          type="button"
-                          onClick={() =>
-                            handleStatusUpdate(
-                              appointment.appointmentKey,
-                              STATUS.confirmed
-                            )
-                          }
-                        >
-                          Confirmar
-                        </button>
+                        {appointment.appointmentStatusKey === STATUS.pending && (
+                          <>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                handleStatusUpdate(
+                                  appointment.appointmentKey,
+                                  STATUS.confirmed
+                                )
+                              }
+                            >
+                              Confirmar
+                            </button>
 
-                        <button
-                          type="button"
-                          className={styles.secondary}
-                          onClick={() =>
-                            handleStatusUpdate(
-                              appointment.appointmentKey,
-                              STATUS.rejected
-                            )
-                          }
-                        >
-                          Rechazar
-                        </button>
+                            <button
+                              type="button"
+                              className={styles.secondary}
+                              onClick={() =>
+                                handleStatusUpdate(
+                                  appointment.appointmentKey,
+                                  STATUS.rejected
+                                )
+                              }
+                            >
+                              Rechazar
+                            </button>
+                          </>
+                        )}
+
+                        {appointment.appointmentStatusKey === STATUS.confirmed && (
+                          <>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                handleStatusUpdate(
+                                  appointment.appointmentKey,
+                                  STATUS.completed
+                                )
+                              }
+                            >
+                              Completar
+                            </button>
+
+                            <button
+                              type="button"
+                              className={styles.secondary}
+                              onClick={() =>
+                                handleStatusUpdate(
+                                  appointment.appointmentKey,
+                                  STATUS.cancelled
+                                )
+                              }
+                            >
+                              Cancelar
+                            </button>
+
+                            <button
+                              type="button"
+                              className={styles.secondary}
+                              onClick={() =>
+                                handleStatusUpdate(
+                                  appointment.appointmentKey,
+                                  STATUS.noShow
+                                )
+                              }
+                            >
+                              No asistió
+                            </button>
+                          </>
+                        )}
                       </div>
                     </td>
                   </tr>

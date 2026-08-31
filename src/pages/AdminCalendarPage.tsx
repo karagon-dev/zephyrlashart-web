@@ -98,6 +98,7 @@ export function AdminCalendarPage() {
         onSelectAppointment={handleSelectAppointment}
         onSelectAvailableSlot={handleSelectAvailableSlot}
         onSelectEmptySlot={handleSelectEmptySlot}
+        onSlotsChanged={loadDashboardData}
       />
 
       <AppointmentDetailModal
