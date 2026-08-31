@@ -4,7 +4,7 @@ import BookingDateStep from '../../components/booking/BookingDateStep';
 import BookingServiceStep from '../../components/booking/BookingServiceStep';
 import BookingTimeStep from '../../components/booking/BookingTimeStep';
 import { createAppointment } from '../../services/appointmentApi';
-import { getAvailableSlots } from '../../services/availableSlotApi';
+import { getPublicAvailableSlots } from '../../services/availableSlotApi';
 import { useAuth } from '../../context/AuthContext';
 import type { AvailableSlot } from '../../types/availableSlot';
 import styles from './Booking.module.css';
@@ -70,7 +70,7 @@ function Booking() {
       setIsLoading(true);
       setErrorMessage('');
 
-      const slots = await getAvailableSlots();
+      const slots = await getPublicAvailableSlots();
       setAvailableSlots(slots);
     } catch {
       setErrorMessage('No se pudieron cargar los espacios disponibles.');
