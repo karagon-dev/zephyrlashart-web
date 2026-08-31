@@ -14,7 +14,7 @@ export function ProtectedRoute({
   const { isAuthenticated, user, isInitialized } = useAuth();
 
   if (!isInitialized) {
-    return null;
+    return <p>Cargando...</p>;
   }
 
   if (!isAuthenticated) {

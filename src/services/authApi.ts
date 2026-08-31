@@ -22,7 +22,7 @@ export function register(request: RegisterRequest): Promise<AuthResponse> {
 
 export function changePassword(request: ChangePasswordRequest): Promise<void> {
   return clientApi<void>("/auth/change-password", {
-    method: "POST",
+    method: "PUT",
     body: JSON.stringify(request),
   });
 }

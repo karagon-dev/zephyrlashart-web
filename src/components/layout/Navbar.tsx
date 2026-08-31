@@ -33,9 +33,9 @@ function Navbar() {
     navigate("/admin/calendar");
   };
 
-  const handlePasswordReset = () => {
+  const handleChangePassword = () => {
     setIsMenuOpen(false);
-    navigate("/password-reset");
+    navigate("/change-password");
   };
 
   return (
@@ -80,9 +80,9 @@ function Navbar() {
               )}
               <button
                 className={styles.dropdownItem}
-                onClick={handlePasswordReset}
+                onClick={handleChangePassword}
               >
-                Restablecer contraseña
+                Cambiar contraseña
               </button>
               <button
                 className={`${styles.dropdownItem} ${styles.dropdownLogout}`}

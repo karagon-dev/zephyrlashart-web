@@ -10,7 +10,7 @@ type Props = {
 };
 
 function formatTime(dateTime: string) {
-  return new Date(dateTime).toLocaleTimeString('en-US', {
+  return new Date(dateTime).toLocaleTimeString("es-CR", {
     hour: 'numeric',
     minute: '2-digit',
   });

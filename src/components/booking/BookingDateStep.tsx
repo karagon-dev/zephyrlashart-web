@@ -13,7 +13,7 @@ function getDateKey(date: Date) {
 }
 
 function formatMonthTitle(date: Date) {
-  return date.toLocaleDateString('en-US', {
+  return date.toLocaleDateString("es-CR", {
     month: 'long',
     year: 'numeric',
   });
