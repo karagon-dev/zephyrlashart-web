@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { changePassword } from "../services/authApi";
+import { PASSWORD_MIN_LENGTH } from "../constants/password";
 import styles from "./AuthPages.module.css";
 
 export function ChangePasswordPage() {
@@ -17,6 +18,11 @@ export function ChangePasswordPage() {
   ) => {
     event.preventDefault();
     setError("");
+
+    if (newPassword.length < PASSWORD_MIN_LENGTH) {
+      setError(`La contraseña nueva debe tener al menos ${PASSWORD_MIN_LENGTH} caracteres.`);
+      return;
+    }
 
     if (newPassword !== confirmPassword) {
       setError("Las contraseñas nuevas no coinciden.");
@@ -67,6 +73,7 @@ export function ChangePasswordPage() {
               type="password"
               value={newPassword}
               onChange={(event) => setNewPassword(event.target.value)}
+              minLength={PASSWORD_MIN_LENGTH}
               required
             />
           </label>
@@ -78,6 +85,7 @@ export function ChangePasswordPage() {
               type="password"
               value={confirmPassword}
               onChange={(event) => setConfirmPassword(event.target.value)}
+              minLength={PASSWORD_MIN_LENGTH}
               required
             />
           </label>

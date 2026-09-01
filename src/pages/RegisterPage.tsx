@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "../services/authApi";
 import { useAuth } from "../context/AuthContext";
+import { PASSWORD_MIN_LENGTH } from "../constants/password";
 import type { RegisterRequest } from "../types/auth";
 import styles from "./AuthPages.module.css";
 
@@ -25,6 +26,11 @@ export function RegisterPage() {
     event.preventDefault();
 
     setError("");
+
+    if (password.length < PASSWORD_MIN_LENGTH) {
+      setError(`La contraseña debe tener al menos ${PASSWORD_MIN_LENGTH} caracteres.`);
+      return;
+    }
 
     if (password !== confirmPassword) {
       setError("Las contraseñas no coinciden.");
@@ -117,6 +123,7 @@ export function RegisterPage() {
               type="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
+              minLength={PASSWORD_MIN_LENGTH}
               required
             />
           </label>
@@ -128,6 +135,7 @@ export function RegisterPage() {
               type="password"
               value={confirmPassword}
               onChange={(event) => setConfirmPassword(event.target.value)}
+              minLength={PASSWORD_MIN_LENGTH}
               required
             />
           </label>
